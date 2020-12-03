@@ -9,7 +9,7 @@ features:
 - title: 大道至简
   details: 组件行为统一
 - title: 自动治理
-  details: 组件拦截器
+  details: 微服务组件的可观测、可治理
 - title: 工程哲学
   details: 配置驱动组件，易于使用
 

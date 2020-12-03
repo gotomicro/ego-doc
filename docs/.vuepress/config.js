@@ -37,7 +37,9 @@ module.exports = {
         editLinkText: "在github.com上编辑此页",
         sidebar: {
             "/summary/": [""], //这样自动生成对应文章
-            "/frame/": [], //这样自动生成对应文章
+            "/frame/": [
+                "quickstart/quickstart"
+            ], //这样自动生成对应文章
         },
         sidebarDepth: 2,
         lastUpdated: "上次更新",
