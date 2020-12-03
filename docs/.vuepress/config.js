@@ -38,7 +38,8 @@ module.exports = {
         sidebar: {
             "/summary/": [""], //这样自动生成对应文章
             "/frame/": [
-                "quickstart/quickstart"
+                "quickstart/quickstart",
+                "core/build"
             ], //这样自动生成对应文章
         },
         sidebarDepth: 2,
