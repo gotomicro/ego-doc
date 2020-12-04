@@ -3,7 +3,7 @@
 [项目地址](https://github.com/gotomicro/ego/tree/master/example/server/http)
 
 ## HTTP配置
-```
+```go
 type Config struct {
 	Host                    string // IP地址，默认0.0.0.0
 	Port                    int    // Port端口，默认9002
@@ -16,7 +16,7 @@ type Config struct {
 ```
 
 ## 用户配置
-```
+```toml
 [server.grpc]
   host = "127.0.0.1"
   port = 9002

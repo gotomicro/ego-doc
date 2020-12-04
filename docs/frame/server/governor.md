@@ -22,7 +22,7 @@
 | /component/info | 组件信息，待完成 |
 
 ## 用户配置
-```
+```toml
 [server.governor]
   host = "0.0.0.0"
   port = 9003
