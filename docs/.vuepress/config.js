@@ -39,7 +39,14 @@ module.exports = {
             "/summary/": [""], //这样自动生成对应文章
             "/frame/": [
                 "quickstart/quickstart",
-                "core/build"
+                {
+                    title: "核心模块",
+                    collapsable: false, // 可选的, 默认值是 true,
+                    children: [
+                        "core/build",
+                        "core/config",
+                    ],
+                },
             ], //这样自动生成对应文章
         },
         sidebarDepth: 2,

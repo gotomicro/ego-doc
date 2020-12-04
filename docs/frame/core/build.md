@@ -6,11 +6,24 @@
 
 ## 编译脚本
 ```bash
-go build -o bin/hello -pkgdir=/Users/askuy/go/pkg/linux_amd64 -ldflags -extldflags -static  -X github.com/gotomicro/ego/core/app.appName=hello -X github.com/gotomicro/ego/core/app.buildVersion=925d5b27ff35b4490494ba78ceb897e02cb12d92-dirty -X github.com/gotomicro/ego/core/app.buildAppVersion=925d5b27ff35b4490494ba78ceb897e02cb12d92-dirty -X github.com/gotomicro/ego/core/app.buildStatus=Modified -X github.com/gotomicro/ego/core/app.buildTag= -X github.com/gotomicro/ego/core/app.buildUser=askuy -X github.com/gotomicro/ego/core/app.buildHost=askuydeMacBook-Pro.local -X github.com/gotomicro/ego/core/app.buildTime=2020-12-03--17:26:24
+go build -o bin/hello -pkgdir=/Users/askuy/go/pkg/linux_amd64 -ldflags -extldflags -static  -X github.com/gotomicro/ego/core/eapp.appName=hello -X github.com/gotomicro/ego/core/eapp.buildVersion=b0807b91aca95b6eb6daafa9195c467fac0c350b-dirty -X github.com/gotomicro/ego/core/eapp.buildAppVersion=b0807b91aca95b6eb6daafa9195c467fac0c350b-dirty -X github.com/gotomicro/ego/core/eapp.buildStatus=Modified -X github.com/gotomicro/ego/core/eapp.buildTag= -X github.com/gotomicro/ego/core/eapp.buildUser=askuy -X github.com/gotomicro/ego/core/eapp.buildHost=askuydeMacBook-Pro.local -X github.com/gotomicro/ego/core/eapp.buildTime=2020-12-04--11:34:55
 ```
 
 
 ## 查看编译版本信息
 ![](../../images/buildversion.png)
 
+## 查看帮助文档
+输入 ``--help`` 可以看到应用支持的指令
+![](../../images/help.png)
+
 ## 查看运行时信息
+我们启动服务
+![](../../images/buildrun.png)
+
+请求治理端口的/metrics接口，可以看到 mocro_build_info 的信息，这里会将编译时的基本信息放入到prometheus中，并且还会把运行时的环境信息和启动时间也加入进来。
+```
+# HELP ego_build_info 
+# TYPE ego_build_info gauge
+ego_build_info{app_version="b0807b91aca95b6eb6daafa9195c467fac0c350b-dirty",build_time="2020-12-04 11:48:35",ego_version="0.1.0",go_version="go1.15.2",mode="dev",name="hello",region="huabei",start_time="2020-12-04 11:49:02",zone="ali-3"} 1.607053742679e+12
+```
