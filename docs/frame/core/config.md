@@ -88,4 +88,4 @@ type People struct {
 }
 ```
 
-<Vssue title="配置" />
+<Vssue title="Config" />

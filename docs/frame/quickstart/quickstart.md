@@ -45,4 +45,4 @@ go run main.go --config=config.toml
 "Hello Ego"%  
 ```
 
-<Vssue title="快速开始" />
+<Vssue title="quickStart" />
