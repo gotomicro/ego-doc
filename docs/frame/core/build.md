@@ -11,14 +11,17 @@ go build -o bin/hello -pkgdir=/Users/askuy/go/pkg/linux_amd64 -ldflags -extldfla
 
 
 ## 查看编译版本信息
+
 ![](../../images/buildversion.png)
 
 ## 查看帮助文档
 输入 ``--help`` 可以看到应用支持的指令
+
 ![](../../images/help.png)
 
 ## 查看运行时信息
 我们启动服务
+
 ![](../../images/buildrun.png)
 
 请求治理端口的/metrics接口，可以看到 mocro_build_info 的信息，这里会将编译时的基本信息放入到prometheus中，并且还会把运行时的环境信息和启动时间也加入进来。
