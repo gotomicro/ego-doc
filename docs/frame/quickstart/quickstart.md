@@ -44,3 +44,5 @@ go run main.go --config=config.toml
 ➜  helloworld git:(master) ✗ curl http://127.0.0.1:9001/hello
 "Hello Ego"%  
 ```
+
+<Vssue title="快速开始" />
