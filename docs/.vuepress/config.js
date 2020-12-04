@@ -45,6 +45,24 @@ module.exports = {
                     children: [
                         "core/build",
                         "core/config",
+                        "core/logger",
+                    ],
+                },
+                {
+                    title: "服务模块",
+                    collapsable: false, // 可选的, 默认值是 true,
+                    children: [
+                        "server/http",
+                        "server/grpc",
+                        "server/governor",
+                    ],
+                },
+                {
+                    title: "任务模块",
+                    collapsable: false, // 可选的, 默认值是 true,
+                    children: [
+                        "task/job",
+                        "task/cron",
                     ],
                 },
             ], //这样自动生成对应文章

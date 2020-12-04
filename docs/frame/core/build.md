@@ -24,7 +24,7 @@ go build -o bin/hello -pkgdir=/Users/askuy/go/pkg/linux_amd64 -ldflags -extldfla
 
 ![](../../images/buildrun.png)
 
-请求治理端口的/metrics接口，可以看到 mocro_build_info 的信息，这里会将编译时的基本信息放入到prometheus中，并且还会把运行时的环境信息和启动时间也加入进来。
+请求治理端口的/metrics接口，可以看到 ``ego_build_info`` 的信息，这里会将编译信息放入到 ``prometheus`` 中，并且还会把运行时的环境信息和启动时间也加入进来。
 ```
 # HELP ego_build_info 
 # TYPE ego_build_info gauge
