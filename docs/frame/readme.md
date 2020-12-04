@@ -60,5 +60,5 @@ EGO是一个集成里各种工程实践的框架。通过组件化的设计模�
 - Component 组件的调用方法
 - Options   配置和组件可选项
 
-
+<Vssue title="readme" />
 

@@ -87,3 +87,5 @@ type People struct {
 	Name string
 }
 ```
+
+<Vssue title="Config" />
