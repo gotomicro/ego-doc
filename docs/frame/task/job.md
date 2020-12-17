@@ -5,7 +5,7 @@
 * 将生命周期托管给例如k8s job或者xxljob，由他们控制job的执行时间
 
 ## Example
-[项目地址](https://github.com/gotomicro/ego/tree/master/example/task/job)
+[项目地址](https://github.com/gotomicro/ego/tree/master/examples/task/job)
 
 ## 用户代码
 如果命令行参数里有 ``--job`` ，那么框架会优先执行这个 ``job``，停止所有的 ``server`` 和  ``cron`` 。 ``job`` 可以执行一个，也可以执行多个。执行一个方式 ``--job=jobname`` ，执行多个方式，用逗号分割 ``jobname``，例如： ``--job=jobname1,jobname2,jobname3``

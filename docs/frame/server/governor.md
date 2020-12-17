@@ -1,6 +1,6 @@
 ## 治理服务
 ## Example
-[项目地址](https://github.com/gotomicro/ego/tree/master/example/server/governor)
+[项目地址](https://github.com/gotomicro/ego/tree/master/examples/server/governor)
 
 ## 背景
 ``Go``不像``Java``和``PHP``，有虚拟机帮助程序员对程序运行的内部情况的观测，但这种观测对于程序员而言排查故障，解决性能问题是非常重要的。
@@ -30,7 +30,7 @@
 
 
 ## 用户代码
-配置创建一个 ``{{你的配置key}}`` 的配置项，其中内容按照上文HTTP的配置进行填写。以上这个示例里这个配置key是``server.governor``
+配置创建一个 ``{{你的配置key}}`` 的配置项，其中内容按照上文配置进行填写。以上这个示例里这个配置key是``server.governor``
 
 代码中创建一个 ``governor`` 服务， egin.Load("{{你的配置key}}").Build() ，代码中的 ``key`` 和配置中的 ``key`` 要保持一致。创建完 ``http`` 服务后， 将他添加到 ``ego new`` 出来应用的 ``Serve`` 方法中，之后使用的方法和 ``gRPC`` 就完全一致。
 

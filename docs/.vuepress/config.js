@@ -69,7 +69,10 @@ module.exports = {
                     title: "客户端模块",
                     collapsable: false, // 可选的, 默认值是 true,
                     children: [
+                        "client/grpc",
+                        "client/http",
                         "client/gorm",
+                        "client/redis",
                     ],
                 },
             ], //这样自动生成对应文章

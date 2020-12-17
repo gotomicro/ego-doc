@@ -1,6 +1,6 @@
 # 定时任务Cron
 ## Example
-[项目地址](https://github.com/gotomicro/ego/tree/master/example/task/cron)
+[项目地址](https://github.com/gotomicro/ego/tree/master/examples/task/cron)
 
 ## 定时任务配置
 ```go

@@ -1,0 +1,72 @@
+# HTTP
+## Example
+[项目地址](https://github.com/gotomicro/ego/tree/master/examples/http)
+
+## HTTP配置
+```go
+type Config struct {
+	Addr                         string        // 连接地址
+	Debug                        bool          // 是否开启调试，默认不开启，开启后并加上export EGO_DEBUG=true，可以看到每次请求，配置名、地址、耗时、请求数据、响应数据
+	RawDebug                     bool          // 是否开启原生调试，默认不开启
+	ReadTimeout                  time.Duration // 读超时，默认2s
+	SlowLogThreshold             time.Duration // 慢日志记录的阈值，默认500ms
+	EnableAccessInterceptor      bool          // 是否开启记录请求数据，默认不开启
+	EnableAccessInterceptorReply bool          // 是否开启记录响应参数，默认不开启
+}
+```
+
+## 用户配置
+```toml
+[http.test]
+addr = "http://127.0.0.1:9007" # 开启后并加上export EGO_DEBUG=true，可以看到每次http请求，配置名、地址、耗时、请求数据、响应数据
+debug = true
+```
+
+## 优雅的Debug
+通过开启``debug``配置和命令行的``export EGO_DEBUG=true``，我们就可以在测试环境里看到请求里的配置名、地址、耗时、请求数据、响应数据
+![image](../../images/client-http.png)
+当然你也可以开启``http``原生的调试，将``rawDebug``设置为``true``
+
+
+## 用户代码
+配置创建一个 ``{{你的配置key}}`` 的配置项，其中内容按照上文HTTP的配置进行填写。以上这个示例里这个配置key是``http.test``
+
+代码中创建一个 ``HTTP`` 客户端， ehttp.Load("{{你的配置key}}").Build()，代码中的 ``key`` 和配置中的 ``key`` 要保持一致。创建完 ``HTTP`` 客户端后， 将他添加到你所需要的Client里即可。
+
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/gotomicro/ego"
+	"github.com/gotomicro/ego/client/ehttp"
+	"github.com/gotomicro/ego/core/elog"
+)
+
+func main() {
+	if err := ego.New().Invoker(
+		invokerHTTP,
+		callHTTP,
+	).Run(); err != nil {
+		elog.Error("startup", elog.FieldErr(err))
+	}
+}
+
+var httpComp *ehttp.Component
+
+func invokerHTTP() error {
+	httpComp = ehttp.Load("http.test").Build()
+	return nil
+}
+
+func callHTTP() error {
+	info, err := httpComp.R().Get("/hello")
+	if err != nil {
+		return err
+	}
+	fmt.Println(info)
+	return nil
+}
+```
+
+

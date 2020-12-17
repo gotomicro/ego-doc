@@ -7,15 +7,15 @@
 type Config struct {
 	Dialect                      string        // 选择数据库种类，默认mysql
 	DSN                          string        // DSN地址: mysql://root:secret@tcp(127.0.0.1:3306)/mysql?charset=utf8mb4&collation=utf8mb4_general_ci&parseTime=True&loc=Local&timeout=1s&readTimeout=3s&writeTimeout=3s
-	Debug                        bool          // Debug开关，默认关闭
-	RawDebug                     bool          // 原生Debug开关，默认关闭
+	Debug                        bool          // 是否开启调试，默认不开启，开启后并加上export EGO_DEBUG=true，可以看到每次请求，配置名、地址、耗时、请求数据、响应数据
+	RawDebug                     bool          // 是否开启原生调试开关，默认不开启
 	MaxIdleConns                 int           // 最大空闲连接数，默认10
 	MaxOpenConns                 int           // 最大活动连接数，默认100
 	ConnMaxLifetime              time.Duration // 连接的最大存活时间，默认300s
 	OnFail                       string        // 创建连接的错误级别，=panic时，如果创建失败，立即panic，默认连接不上panic
 	SlowLogThreshold             time.Duration // 慢日志阈值，默认500ms
-	DisableMetricInterceptor     bool          // 关闭指标采集，默人false，也就是说默认采集监控
-	DisableTrace                 bool          // 关闭链路追踪，默认false，也就是说默认采集trace
+	EnableMetricInterceptor      bool          // 是否开启监控，默认开启
+	EnableTraceInterceptor       bool          // 是否开启链路追踪，默认开启
 	EnableDetailSQL              bool          // 记录错误sql时,是否打印包含参数的完整sql语句，select * from aid = ?;
 	EnableAccessInterceptor      bool          // 是否开启，记录请求数据
 	EnableAccessInterceptorReply bool          // 是否开启记录响应参数
@@ -23,13 +23,17 @@ type Config struct {
 }
 ```
 
-
 ## 用户配置
 ```toml
 [mysql.test]
    debug = true # ego重写gorm debug，打开后可以看到，配置名、地址、耗时、请求数据、响应数据
    dsn = "root:root@tcp(127.0.0.1:3306)/ego?charset=utf8&parseTime=True&loc=Local&readTimeout=1s&timeout=1s&writeTimeout=3s"
 ```
+
+## 优雅的Debug
+通过开启``debug``配置和命令行的``export EGO_DEBUG=true``，我们就可以在测试环境里看到请求里的配置名、地址、耗时、请求数据、响应数据
+![image](../../images/client-gorm.png)
+当然你也可以开启``gorm``原生的调试，将``rawDebug``设置为``true``
 
 ## 用户代码
 ::: tip
@@ -40,7 +44,7 @@ type Config struct {
 go get github.com/gotomicro/ego-component/egorm
 ```
 
-配置创建一个 ``{{你的配置key}}`` 的配置项，其中内容按照上文gorm的配置进行填写。
+配置创建一个 ``{{你的配置key}}`` 的配置项，其中内容按照上文配置进行填写。以上这个示例里这个配置key是``gorm.test``
 
 代码中创建一个 ``gorm`` 实例 ``egorm.Load("{{你的配置key}}").Build()``，代码中的 ``key`` 和配置中的 ``key`` 要保持一致。创建完 ``gorm`` 实例后，就可以直接使用他对 ``db`` 进行 ``crud`` 。
 

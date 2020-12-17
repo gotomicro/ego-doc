@@ -1,6 +1,6 @@
 # 编译
 ## Example
-[项目地址](https://github.com/gotomicro/ego/tree/master/example/build)
+[项目地址](https://github.com/gotomicro/ego/tree/master/examples/build)
 
 使用EGO框架的应用会在编译期注入许多必要信息，方便后续排查问题。该方案被大量Go应用所使用，例如istio、prometheus等。我们使用的编译脚本核心内容如下所示。
 

@@ -1,6 +1,6 @@
 # 快速开始
 ## Example
-[项目地址](https://github.com/gotomicro/ego/tree/master/example/helloworld)
+[项目地址](https://github.com/gotomicro/ego/tree/master/examples/helloworld)
 
 ## HelloWorld
 ```Go

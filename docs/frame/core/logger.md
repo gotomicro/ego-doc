@@ -1,8 +1,8 @@
 # 日志
 ## Example
-* [终端显示日志](https://github.com/gotomicro/ego/tree/master/example/logger/console)
-* [文本显示日志](https://github.com/gotomicro/ego/tree/master/example/logger/file)
-* [日志动态修改级别](https://github.com/gotomicro/ego/tree/master/example/logger/watch)
+* [终端显示日志](https://github.com/gotomicro/ego/tree/master/examples/logger/console)
+* [文本显示日志](https://github.com/gotomicro/ego/tree/master/examples/logger/file)
+* [日志动态修改级别](https://github.com/gotomicro/ego/tree/master/examples/logger/watch)
 
 
 ## 日志配置
