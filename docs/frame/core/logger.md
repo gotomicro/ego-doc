@@ -132,3 +132,7 @@ EGO的字段是确定类型的，通过正交查询方式，减少索引字段�
 |peerHost|	string|	对端主机名|
 |errKind|	string|	错误类型，用于收敛|
 |err|	string|	错误信息|
+
+## 日志
+* 慢日志
+* 错误日志

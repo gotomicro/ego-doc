@@ -65,6 +65,13 @@ module.exports = {
                         "task/cron",
                     ],
                 },
+                {
+                    title: "客户端模块",
+                    collapsable: false, // 可选的, 默认值是 true,
+                    children: [
+                        "client/gorm",
+                    ],
+                },
             ], //这样自动生成对应文章
         },
         sidebarDepth: 2,
