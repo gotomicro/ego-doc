@@ -50,9 +50,9 @@ type Config struct {
 go get github.com/gotomicro/ego-component/eredis
 ```
 
-配置创建一个 ``{{你的配置key}}`` 的配置项，其中内容按照上文配置进行填写。以上这个示例里这个配置key是``redis.test``
+配置创建一个 ``redis`` 的配置项，其中内容按照上文配置进行填写。以上这个示例里这个配置key是``redis.test``
 
-代码中创建一个 ``redis`` 实例 ``eredis.Load("{{你的配置key}}").Build()``，代码中的 ``key`` 和配置中的 ``key`` 要保持一致。创建完 ``redis`` 实例后，就可以直接使用他对 ``redis`` 进行 ``crud`` 。
+代码中创建一个 ``redis`` 实例 ``eredis.Load("key").Build()``，代码中的 ``key`` 和配置中的 ``key`` 要保持一致。创建完 ``redis`` 实例后，就可以直接使用他对 ``redis`` 进行 ``crud`` 。
 
 
 ```go

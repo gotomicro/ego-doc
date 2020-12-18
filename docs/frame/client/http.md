@@ -29,9 +29,9 @@ debug = true
 
 
 ## 用户代码
-配置创建一个 ``{{你的配置key}}`` 的配置项，其中内容按照上文HTTP的配置进行填写。以上这个示例里这个配置key是``http.test``
+配置创建一个 ``http`` 的配置项，其中内容按照上文HTTP的配置进行填写。以上这个示例里这个配置key是``http.test``
 
-代码中创建一个 ``HTTP`` 客户端， ehttp.Load("{{你的配置key}}").Build()，代码中的 ``key`` 和配置中的 ``key`` 要保持一致。创建完 ``HTTP`` 客户端后， 将他添加到你所需要的Client里即可。
+代码中创建一个 ``HTTP`` 客户端， ``ehttp.Load("key").Build()``，代码中的 ``key`` 和配置中的 ``key`` 要保持一致。创建完 ``HTTP`` 客户端后， 将他添加到你所需要的Client里即可。
 
 ```go
 package main
