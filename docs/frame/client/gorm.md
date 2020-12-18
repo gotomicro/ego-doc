@@ -103,3 +103,5 @@ func testDB() error {
 	return err
 }
 ```
+
+<Vssue title="Client-gorm" />

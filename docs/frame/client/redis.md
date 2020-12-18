@@ -96,3 +96,5 @@ func testRedis() error {
     return nil
 }
 ```
+
+<Vssue title="Client-redis" />

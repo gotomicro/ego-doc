@@ -76,3 +76,5 @@ func serverHttp() *egin.Component {
 # TYPE ego_build_info gauge
 ego_build_info{app_version="b0807b91aca95b6eb6daafa9195c467fac0c350b-dirty",build_time="2020-12-04 11:48:35",ego_version="0.1.0",go_version="go1.15.2",mode="dev",name="hello",region="huabei",start_time="2020-12-04 11:49:02",zone="ali-3"} 1.607053742679e+12
 ```
+
+<Vssue title="Server-governor" />
