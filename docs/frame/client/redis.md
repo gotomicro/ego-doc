@@ -1,6 +1,6 @@
 # Redis
 ## Example
-[项目地址](https://github.com/gotomicro/ego-component/tree/master/redis/examples/redis)
+[项目地址](https://github.com/gotomicro/ego-component/tree/master/eredis/examples/redis)
 
 ## Redis配置
 ```go
