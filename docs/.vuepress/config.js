@@ -76,6 +76,10 @@ module.exports = {
                     ],
                 },
             ], //这样自动生成对应文章
+            "/awesome/": [
+                "awesome/errors",
+                "awesome/gracefulstop",
+            ]
         },
         sidebarDepth: 2,
         lastUpdated: "上次更新",
