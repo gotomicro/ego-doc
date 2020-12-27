@@ -27,6 +27,10 @@ module.exports = {
                 link: "/frame/",
             },
             {
+                text: "Awesome",
+                link: "/awesome/",
+            },
+            {
                 text: "EGO",
                 link: "https://github.com/gotomicro/ego",
             },
