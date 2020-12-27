@@ -77,8 +77,8 @@ module.exports = {
                 },
             ], //这样自动生成对应文章
             "/awesome/": [
-                "awesome/errors",
-                "awesome/gracefulstop",
+                "errors",
+                "gracefulstop",
             ]
         },
         sidebarDepth: 2,
