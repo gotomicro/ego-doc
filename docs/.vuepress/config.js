@@ -83,6 +83,7 @@ module.exports = {
             "/awesome/": [
                 "errors",
                 "gracefulstop",
+                "logger",
             ]
         },
         sidebarDepth: 2,
