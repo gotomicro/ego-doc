@@ -79,11 +79,25 @@ module.exports = {
                         "client/redis",
                     ],
                 },
+                {
+                    title: "治理模块",
+                    collapsable: false, // 可选的, 默认值是 true,
+                    children: [
+                        "governor/metric",
+                    ],
+                },
+                {
+                    title: "最佳实践",
+                    collapsable: false, // 可选的, 默认值是 true,
+                    children: [
+                        "bestpractice/metric",
+                        "bestpractice/logger",
+                    ],
+                },
             ], //这样自动生成对应文章
             "/awesome/": [
                 "errors",
                 "gracefulstop",
-                "logger",
             ]
         },
         sidebarDepth: 2,
