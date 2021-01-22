@@ -3,6 +3,7 @@
 以下是框架记录的指标，prometheus在采集时加入指标，例如job或者app等数据，所以可以由他来过滤一些应用信息数据
 #### server端计数器
 * server_handle_total
+
 |名称|描述|用法|
 | --- | --- | --- |
 |type|类型|
@@ -29,6 +30,7 @@ code 取数据
 
 #### server直方图
 server_handle_seconds
+
 |名称|描述|用法|
 | --- | --- | --- |
 |type|类型|
