@@ -5,13 +5,16 @@
 ## HTTP配置
 ```go
 type Config struct {
-	Host                    string        // IP地址，默认0.0.0.0
-	Port                    int           // Port端口，默认9002
-	Deployment              string        // 部署区域
-	Network                 string        // 网络类型，默认tcp4
-	EnableTraceInterceptor  bool          // 是否开启链路追踪，默认开启
-	EnableMetricInterceptor bool          // 是否开启监控，默认开启
-	SlowLogThreshold        time.Duration // 服务慢日志，默认500ms
+	Host                       string        // IP地址，默认0.0.0.0
+	Port                       int           // Port端口，默认9002
+	Deployment                 string        // 部署区域
+	Network                    string        // 网络类型，默认tcp4
+	EnableMetricInterceptor    bool          // 是否开启监控，默认开启
+	EnableTraceInterceptor     bool          // 是否开启链路追踪，默认开启
+	SlowLogThreshold           time.Duration // 服务慢日志，默认500ms
+	EnableAccessInterceptorReq bool          // 是否开启记录请求参数，默认不开启
+	EnableAccessInterceptorRes bool          // 是否开启记录响应参数，默认不开启
+	EnableLocalMainIP          bool          // 自动获取ip地址
 }
 ```
 
