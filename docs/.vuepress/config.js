@@ -50,6 +50,7 @@ module.exports = {
                         "core/build",
                         "core/config",
                         "core/logger",
+                        "core/trace",
                     ],
                 },
                 {

@@ -1,7 +1,8 @@
 # gRPC
 ## 1 Example
 [项目地址](https://github.com/gotomicro/ego/tree/master/examples/grpc)
-ego版本：``ego@v0.3.11``
+
+ego版本：``ego@v0.3.14``
 
 ## 2 gRPC配置
 ```go
@@ -221,5 +222,40 @@ func callGrpc() error {
 	return nil
 }
 ```
+
+## 7 使用gRPC的链路
+### 7.1 用户配置
+```toml
+[trace.jaeger] # 启用链路的核心配置
+[grpc.test]
+    debug = true # 开启后并加上export EGO_DEBUG=true，可以看到每次grpc请求，配置名、地址、耗时、请求数据、响应数据
+    addr = "127.0.0.1:9002"
+```
+### 7.2 测试代码
+[gRPC直连查看链路id](https://github.com/gotomicro/ego/tree/master/examples/grpc/direct)
+#### 7.2.1 服务端链路信息
+![image](../../images/trace-server-grpc.png)
+
+#### 7.2.2 客户端链路信息
+![image](../../images/trace-client-grpc.png)
+
+## 8 开启客户端详细日志信息
+### 8.1 测试代码
+[gRPC查看详细信息](https://github.com/gotomicro/ego/tree/master/examples/grpc/direct)
+
+### 8.2 用户配置
+```toml
+[grpc.test]
+    debug = true # 开启后并加上export EGO_DEBUG=true，可以看到每次grpc请求，配置名、地址、耗时、请求数据、响应数据
+    addr = "127.0.0.1:9002"
+	enableAccessInterceptor=true             #  是否开启记录请求数据，默认不开启
+    enableAccessInterceptorReq=true          # 是否开启记录请求参数，默认不开启
+    enableAccessInterceptorRes=true          # 是否开启记录响应参数，默认不开启
+```
+#### 8.3 服务端详细信息
+![image](../../images/client-request-info.png)
+
+
+
 
 <Vssue title="Client-grpc" />
