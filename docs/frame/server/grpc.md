@@ -98,5 +98,71 @@ func (g Greeter) SayHello(context context.Context, request *helloworld.HelloRequ
 #### 5.3 服务端详细信息
 ![image](../../images/server-resp-info.png)
 
+## 6 gRPC获取Header头信息
+* app
+* x-trace-id
+* client-ip
+* cpu(待实现)
+
+### 6.1 服务端获取对端应用名的header信息
+前提
+* gRPC客户端使用了EGO设置app应用名中间件
+```go
+func getPeerName(ctx context.Context) string {
+	md, ok := metadata.FromIncomingContext(ctx)
+	if !ok {
+		return ""
+	}
+	val, ok2 := md["app"]
+	if !ok2 {
+		return ""
+	}
+	return strings.Join(val, ";")
+}
+```
+
+### 6.2 服务端获取trace id的header信息
+前提：
+* gRPC客户端使用了EGO设置trace id中间
+* gRPC客户端开启链路
+* gRPC服务端开启链路
+```toml
+[trace.jaeger] # 开启链路
+```
+```go
+// 如果开启了全局链路，可以获取链路id
+if opentracing.IsGlobalTracerRegistered() {
+    etrace.ExtractTraceID(ctx)
+}
+```
+
+### 6.3 服务端获取client ip的header信息
+```go
+func getPeerIP(ctx context.Context) string {
+	md, ok := metadata.FromIncomingContext(ctx)
+	if !ok {
+		return ""
+	}
+	// 从metadata里取对端ip
+	if val, ok := md["client-ip"]; ok {
+		return strings.Join(val, ";")
+	}
+	// 从grpc里取对端ip
+	pr, ok2 := peer.FromContext(ctx)
+	if !ok2 {
+		return ""
+	}
+	if pr.Addr == net.Addr(nil) {
+		return ""
+	}
+	addSlice := strings.Split(pr.Addr.String(), ":")
+	if len(addSlice) > 1 {
+		return addSlice[0]
+	}
+	return ""
+}
+```
+### 6.4 服务端获取cpu的header信息
+未来用于p2c的负载均衡，未实现
 
 <Vssue title="Server-grpc" />
