@@ -1,7 +1,7 @@
 # 1 微服务介绍
 ## 1.1 微服务框架
 由单一应用发展到微服务，第一阶段重复代码主要是复制粘贴，第二阶段重复代码做到复用，将一些功能抽为组件，最后一个阶段是将各个组件进行配置、日志、链路、监控等治理，完成统一框架，如下所示。
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/497518/1603204643465-bbb8e8ef-04a2-42ee-a171-7c1176a764b4.png#align=left&display=inline&height=454&margin=%5Bobject%20Object%5D&name=image.png&originHeight=908&originWidth=1738&size=102183&status=done&style=none&width=869)
+![image.png](../images/micro1.png)
 业界针对框架和组件设计有两种看法。一种是轻量级的框架例如gin、echo，只提供基本http服务能力，其他配置、日志、监控等组件都需要工程师自行拼凑；另一种则是重量级的框架例如beego、kratos、jupiter、go-zero，具有all in one能力，无需在像搭乐高一样，去拼凑组件，工程师直接使用该框架进行开发业务。
 
 个人认认为重量级框架对于公司层面是有一定好处的，其优势主要在于以下几点：
@@ -21,7 +21,7 @@
 
 
 理解了框架的优点后，我们再来看下公司级别框架的示意图。
-![](https://cdn.nlark.com/yuque/0/2020/png/497518/1603204584371-8a771d5c-b545-4188-8741-b59118f8b969.png#align=left&display=inline&height=795&margin=%5Bobject%20Object%5D&originHeight=795&originWidth=1419&size=0&status=done&style=none&width=1419)
+![image.png](../images/micro2.png)
 公司级别的框架一般都是建立在公司的基础规范之上，与基础建设进行紧密结合，从而降低公司的运维成本、提升研发效率、提升服务线上运行的稳定性。
 
 接下来我们就来讲下微服务相关的一些概念，来提升我们的微服务能力
@@ -200,13 +200,14 @@ func DefaultConfig() *config {
 
 为了进一步优化日志和监控字段，我们这里是有一个实现细节，例如之前我们把redis 的命令叫 command，mysql 语句叫 sql，http 请求叫 url，这样就导致我们排查以上问题的时候，写的查询语句特别复杂，很难收敛做分析和发现问题，所以我们后来将一些共性的指标统一成一个名字，将刚才所说的一些问题在日志和监控分成不同的模块，但取名都叫 method，将查询正交化，方便我们用一条语句就可以把所有错误都找出来。
 
-收敛后的日志可以做大盘![](https://cdn.nlark.com/yuque/0/2020/png/497518/1603204584126-226c30c2-1419-48d0-b812-565a1fddcd41.png#align=left&display=inline&height=568&margin=%5Bobject%20Object%5D&originHeight=568&originWidth=1465&size=0&status=done&style=none&width=1465)
+收敛后的日志可以做大盘
+![image.png](../images/micro3.png)
 
 
 
 监控可以根据应用进行筛选
+![image.png](../images/micro4.png)
 
-![](https://cdn.nlark.com/yuque/0/2020/png/497518/1603204584216-92ef901e-bced-4185-8dc7-60604d175690.png#align=left&display=inline&height=394&margin=%5Bobject%20Object%5D&originHeight=394&originWidth=890&size=0&status=done&style=none&width=890)
 
 
 #### 1.5.4 统一错误码
@@ -218,13 +219,11 @@ func DefaultConfig() *config {
 
 ## 1.7 排查故障
 现实排查故障如下所示
-
-![](https://cdn.nlark.com/yuque/0/2020/png/497518/1603204584188-8aa0251d-af91-4d73-9103-ab8d5b495727.png#align=left&display=inline&height=834&margin=%5Bobject%20Object%5D&originHeight=834&originWidth=1542&size=0&status=done&style=none&width=1542)
-
+![image.png](../images/micro5.png)
 以上问题，研发和运维不想疲于应付问题，那么就需要从底层自上而下设计，通过框架的错误收敛找到根因、结合监控、报警、混沌工程、全链路压测手段形成sop手册，作为解决方案。如下所示。
 
-![](https://cdn.nlark.com/yuque/0/2020/png/497518/1603204584182-3b1cd523-07f7-4706-9af4-d6d9867b10d5.png#align=left&display=inline&height=816&margin=%5Bobject%20Object%5D&originHeight=816&originWidth=1537&size=0&status=done&style=none&width=1537)
+![image.png](../images/micro6.png)
 
 最终落地为sop手册，如下所示
-![](https://cdn.nlark.com/yuque/0/2020/png/497518/1603204584325-7e3967ca-9d7a-4d5f-9626-7d26d018a98f.png#align=left&display=inline&height=845&margin=%5Bobject%20Object%5D&originHeight=845&originWidth=1529&size=0&status=done&style=none&width=1529)
+![image.png](../images/micro7.png)
 图中错误信息，是框架的唯一错误码，能够通过这个统一监控和报警，立刻知道需要做什么事。

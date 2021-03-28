@@ -1,6 +1,6 @@
 ## Go编译注入信息
 Go微服务的编译是微服务的第一步，也是比较重要的一个环节。我们可以在编译的时候注入很多编译信息，例如应用名称、应用版本号、框架版本号、编译所在机器、编译时间，我们可以直接注入到二进制里。编译完成后，我们可以使用`./micro --version` ，查看该服务的基本情况，如下图所示。
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/497518/1594221263763-b8d01a7f-74fb-4140-ac33-7c98d1d495e4.png#align=left&display=inline&height=182&margin=%5Bobject%20Object%5D&name=image.png&originHeight=156&originWidth=638&size=20314&status=done&style=none&width=746)
+![image](../images/buildversion.png)
 我们还可以在微服务启动后，将这些编译信息写入prometheus或者etcd中。当线上出现什么问题的时候，我们能够快速知道微服务在线上使用的哪个版本、编译在什么时间，提升我们排查微服务问题的速度。
 
 
@@ -216,9 +216,6 @@ BuildTime: %v
 ```
 
 
-
-
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/497518/1594134300491-c153add2-9d50-4b3d-8809-db9a80ae7ad9.png#align=left&display=inline&height=156&margin=%5Bobject%20Object%5D&name=image.png&originHeight=156&originWidth=638&size=20314&status=done&style=none&width=638)
 ## -tag
 用于编译打tag，灰度测试代码使用。例如
 ```bash
