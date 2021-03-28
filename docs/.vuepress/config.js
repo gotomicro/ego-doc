@@ -101,7 +101,7 @@ module.exports = {
                 },
             ], //这样自动生成对应文章
             "/micro/": [
-                "micro/micro",
+                "micro/build",
             ],
             "/awesome/": [
                 "errors",
