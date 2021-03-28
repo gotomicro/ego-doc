@@ -26,6 +26,7 @@ type config struct {
     SlowLogThreshold           time.Duration // 慢日志门限值，超过该门限值的请求，将被记录到慢日志中
     OnFail                     string        // OnFail panic|error
     EnableMetricInterceptor    bool          // 是否开启监控，默认开启
+    EnableTraceInterceptor     bool          // 是否开启链路，默认开启
     EnableAccessInterceptor    bool          // 是否开启，记录请求数据
     EnableAccessInterceptorReq bool          // 是否开启记录请求参数
     EnableAccessInterceptorRes bool          // 是否开启记录响应参数
@@ -113,22 +114,22 @@ func invokerRedis() error {
 
 func testRedis() error {
     // 使用redis stub component进行set、get操作
-    err := eredisStubClient.Set("hello", "world", 0)
+    err := eredisStubClient.Set(context.Background(), "hello", "world", 0)
     if err != nil {
         log.Println(err)
     }
-    str, err := eredisStubClient.GetString("hello")
+    str, err := eredisStubClient.Get(context.Background(), "hello")
     if err != nil {
         log.Println(err)
     }
     fmt.Println(str)
 
     // 使用redis cluster component进行set、get操作
-    err := eredisClusterClient.Set("hello", "world", 0)
+    err := eredisClusterClient.Set(context.Background(), "hello", "world", 0)
     if err != nil {
         log.Println(err)
     }
-    str, err := eredisClusterClient.GetString("hello")
+    str, err := eredisClusterClient.Get(context.Background(), "hello")
     if err != nil {
         log.Println(err)
     }
@@ -136,11 +137,11 @@ func testRedis() error {
     return nil
 
     // 使用redis sentinel component进行set、get操作
-    err := eredisSentinelClient.Set("hello", "world", 0)
+    err := eredisSentinelClient.Set(context.Background(), "hello", "world", 0)
     if err != nil {
         log.Println(err)
     }
-    str, err := eredisSentinelClient.GetString("hello")
+    str, err := eredisSentinelClient.Get(context.Background(), "hello")
     if err != nil {
         log.Println(err)
     }

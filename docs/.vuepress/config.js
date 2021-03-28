@@ -27,6 +27,10 @@ module.exports = {
                 link: "/frame/",
             },
             {
+                text: "微服务",
+                link: "/micro/",
+            },
+            {
                 text: "Awesome",
                 link: "/awesome/",
             },
@@ -96,6 +100,9 @@ module.exports = {
                     ],
                 },
             ], //这样自动生成对应文章
+            "/micro/": [
+                "micro/micro",
+            ],
             "/awesome/": [
                 "errors",
                 "gracefulstop",
