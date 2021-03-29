@@ -1,6 +1,5 @@
-# 2 编译
-
-Go常用部署方式有三种 `nohup` 、 `supervisor` 、 `systemd` 。
+# 2 部署
+Go常用部署方式有三种 `nohup`, `supervisor`, `systemd`。
 
 ## 2.1 Nohup
 nohup是在linux系统上运行程序的一种方式。这种方式比较简单，通过一个命令行，就可以快速启动程序
