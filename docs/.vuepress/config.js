@@ -101,7 +101,20 @@ module.exports = {
                 },
             ], //这样自动生成对应文章
             "/micro/": [
-                "build",
+                {
+                    title: "第一章 编译和部署",
+                    collapsable: false, // 可选的, 默认值是 true,
+                    children: [
+                        "chapter1/build",
+                    ],
+                },
+                {
+                    title: "第二章 基础组件",
+                    collapsable: false, // 可选的, 默认值是 true,
+                    children: [
+                        "chapter2/flag",
+                    ],
+                },
             ],
             "/awesome/": [
                 "errors",

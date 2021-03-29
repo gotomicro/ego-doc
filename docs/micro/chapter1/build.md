@@ -1,11 +1,12 @@
-## Go编译注入信息
+# 1.1 编译
+## 1.1.1 Go编译注入信息
 Go微服务的编译是微服务的第一步，也是比较重要的一个环节。我们可以在编译的时候注入很多编译信息，例如应用名称、应用版本号、框架版本号、编译所在机器、编译时间，我们可以直接注入到二进制里。编译完成后，我们可以使用`./micro --version` ，查看该服务的基本情况，如下图所示。
-![image](../images/buildversion.png)
+![image](../../images/buildversion.png)
 我们还可以在微服务启动后，将这些编译信息写入prometheus或者etcd中。当线上出现什么问题的时候，我们能够快速知道微服务在线上使用的哪个版本、编译在什么时间，提升我们排查微服务问题的速度。
 
 
 接下来我们就来看下如何在Go微服务里编译这些信息
-## Go编译含义
+## 1.1.2 Go编译含义
 我们可以使用指令 `go help build`查看go build的具体用法。
 ```bash
 usage: go build [-o output] [-i] [build flags] [packages]
@@ -119,11 +120,10 @@ and test commands:
 		For example, instead of running asm, the go command will run
 		'cmd args /path/to/asm <arguments for asm>'.
 ```
-`go build` 指令比较多。我们把微服务里常用的命令展示在下表：
 
-
-
-| 参数 | 备  注 |
+## 1.1.3 常用编译指令
+`go build`比较多。我们把微服务里常用的命令展示在下表：
+| 参数 | 备注 |
 | --- | --- |
 | -o | 目标地址 |
 | -race | 开启竞态检测 |
@@ -132,12 +132,12 @@ and test commands:
 | -x | 打印编译时会用到的所有命令 |
 | -tag | 根据tag版本编译 |
 
-## -o
+### -o
 编译到指定地址
 ```bash
 go build -o micro
 ```
-## -race
+### -race
 开启竞态检查编译。通过这个编译方式。你的程序可以在运行的时候崩溃
 ```bash
 go build -o micro -race
@@ -145,8 +145,7 @@ curl http://127.0.0.1:8080/race
 ```
 我们开启race编译后，访问该地址，就可以看到代码中出现race的报错
 
-## -ldflags
-
+### -ldflags
 - -w 去掉DWARF调试信息，得到的程序就不能用gdb调试了
 -  -s 去掉符号表,panic时候的stack trace就没有任何文件名/行号信息了，这个等价于普通C/C++程序被strip的效果
 - -X 设置包中的变量值
@@ -158,7 +157,7 @@ curl http://127.0.0.1:8080/race
 
 ```
 
-
+### 编译演示代码
 ```go
 package main
 
@@ -215,8 +214,7 @@ BuildTime: %v
 }
 ```
 
-
-## -tag
+### -tag
 用于编译打tag，灰度测试代码使用。例如
 ```bash
 go build -o micro -tag="build1"
