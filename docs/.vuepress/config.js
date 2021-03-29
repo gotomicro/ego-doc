@@ -106,6 +106,7 @@ module.exports = {
                     collapsable: false, // 可选的, 默认值是 true,
                     children: [
                         "chapter1/build",
+                        "chapter1/deploy",
                     ],
                 },
                 {
