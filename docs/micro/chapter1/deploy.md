@@ -36,7 +36,7 @@ nohup ./micro &
 ^Z
 [1]  + 9037 suspended  nohup ./micro
 ```
-`nohup` 只能实现程序在后台运行，作用比较弱。不能对程序的panic做监控报警和自动拉起。一般在生产环境上，我们并不会使用 `nohup` ，我们会使用更
+`nohup`只能实现程序在后台运行，作用比较弱。不能对程序的panic做监控报警和自动拉起。一般在生产环境上，我们并不会使用 `nohup` ，我们会使用更
 
 
 ## 2.2 Supervisor
