@@ -1,5 +1,5 @@
 # 2 部署
-Go常用部署方式有三种 `nohup`, `supervisor`, `systemd`。
+Go常用部署方式有四种 `nohup`, `supervisor`, `systemd`，`docker`。
 
 ## 2.1 Nohup
 nohup是在linux系统上运行程序的一种方式。这种方式比较简单，通过一个命令行，就可以快速启动程序
@@ -7,7 +7,7 @@ nohup是在linux系统上运行程序的一种方式。这种方式比较简单�
 nohup ./micro &
 ```
 
-- nohup 加在一个命令的最前面，表示不挂断的运行命令
+- nohup加在一个命令的最前面，表示不挂断的运行命令
 - & 加在一个命令的最后面，表示这个命令放在后台执行
 ### 2.1.1 常用指令
 
