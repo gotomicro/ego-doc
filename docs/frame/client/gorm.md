@@ -18,7 +18,7 @@ type Config struct {
 	EnableTraceInterceptor       bool          // 是否开启链路追踪，默认开启
 	EnableDetailSQL              bool          // 记录错误sql时,是否打印包含参数的完整sql语句，select * from aid = ?;
 	EnableAccessInterceptor      bool          // 是否开启，记录请求数据
-	EnableAccessInterceptorReply bool          // 是否开启记录响应参数
+	EnableAccessInterceptorRes   bool          // 是否开启记录响应参数
 	EnableAccessInterceptorReq   bool          // 是否开启记录请求参数
 }
 ```

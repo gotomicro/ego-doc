@@ -101,6 +101,7 @@ module.exports = {
                 },
             ], //这样自动生成对应文章
             "/micro/": [
+                "大纲",
                 {
                     title: "第一章 编译和部署",
                     collapsable: false, // 可选的, 默认值是 true,
@@ -115,6 +116,14 @@ module.exports = {
                     children: [
                         "chapter2/flag",
                         "chapter2/config",
+                    ],
+                },
+                {
+                    title: "第三章 gRPC",
+                    collapsable: false, // 可选的, 默认值是 true,
+                    children: [
+                        "chapter3/注册中心",
+                        "chapter3/服务注册",
                     ],
                 },
             ],
