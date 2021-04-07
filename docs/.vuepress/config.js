@@ -124,6 +124,7 @@ module.exports = {
                     children: [
                         "chapter3/注册中心",
                         "chapter3/服务注册",
+                        "chapter3/服务发现",
                     ],
                 },
             ],
