@@ -127,6 +127,13 @@ module.exports = {
                         "chapter3/服务发现",
                     ],
                 },
+                {
+                    title: "第八章 治理",
+                    collapsable: false, // 可选的, 默认值是 true,
+                    children: [
+                        "chapter10/sla",
+                    ],
+                },
             ],
             "/awesome/": [
                 "errors",
