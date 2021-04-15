@@ -31,6 +31,10 @@ module.exports = {
                 link: "/micro/",
             },
             {
+                text: "Web优化",
+                link: "/web/",
+            },
+            {
                 text: "Awesome",
                 link: "/awesome/",
             },
