@@ -86,6 +86,9 @@ module.exports = {
                         "client/http",
                         "client/gorm",
                         "client/redis",
+                        "client/mongo",
+                        "client/kafka",
+
                     ],
                 },
                 {

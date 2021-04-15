@@ -2,35 +2,40 @@
 ## 1 Example
 [项目地址](https://github.com/gotomicro/ego/tree/master/examples/grpc)
 
-ego版本：``ego@v0.3.14``
+ego版本：``ego@v0.5.3``
 
 ## 2 gRPC配置
 ```go
 type Config struct {
-	Addr                       string        // 连接地址，直连为127.0.0.1:9001，服务发现为etcd:///appname
-	BalancerName               string        // 负载均衡方式，默认round robin
-	OnFail                     string        // 失败后的处理方式，panic | error
-	DialTimeout                time.Duration // 连接超时，默认3s
-	ReadTimeout                time.Duration // 读超时，默认1s
-	SlowLogThreshold           time.Duration // 慢日志记录的阈值，默认600ms
-	Debug                      bool          // 是否开启调试，默认不开启，开启后并加上export EGO_DEBUG=true，可以看到每次请求，配置名、地址、耗时、请求数据、响应数据
-	EnableBlock                bool          // 是否开启阻塞，默认开启
-	EnableWithInsecure         bool          // 是否开启非安全传输，默认开启
-	EnableMetricInterceptor    bool          // 是否开启监控，默认开启
-	EnableTraceInterceptor     bool          // 是否开启链路追踪，默认开启
-	EnableAppNameInterceptor   bool          // 是否开启传递应用名，默认开启
-	EnableTimeoutInterceptor   bool          // 是否开启超时传递，默认开启
-	EnableAccessInterceptor    bool          // 是否开启记录请求数据，默认不开启
-	EnableAccessInterceptorReq bool          // 是否开启记录请求参数，默认不开启
-	EnableAccessInterceptorRes bool          // 是否开启记录响应参数，默认不开启
+    Addr                       string        // 连接地址，直连为127.0.0.1:9001，服务发现为etcd:///appname
+    BalancerName               string        // 负载均衡方式，默认round robin
+    OnFail                     string        // 失败后的处理方式，panic | error
+    DialTimeout                time.Duration // 连接超时，默认3s
+    ReadTimeout                time.Duration // 读超时，默认1s
+    SlowLogThreshold           time.Duration // 慢日志记录的阈值，默认600ms
+    Debug                      bool          // 是否开启调试，默认不开启，开启后并加上export EGO_DEBUG=true，可以看到每次请求，配置名、地址、耗时、请求数据、响应数据
+    EnableBlock                bool          // 是否开启阻塞，默认开启
+    EnableWithInsecure         bool          // 是否开启非安全传输，默认开启
+    EnableMetricInterceptor    bool          // 是否开启监控，默认开启
+    EnableTraceInterceptor     bool          // 是否开启链路追踪，默认开启
+    EnableAppNameInterceptor   bool          // 是否开启传递应用名，默认开启
+    EnableTimeoutInterceptor   bool          // 是否开启超时传递，默认开启
+    EnableAccessInterceptor    bool          // 是否开启记录请求数据，默认不开启
+    EnableAccessInterceptorReq bool          // 是否开启记录请求参数，默认不开启
+    EnableAccessInterceptorRes bool          // 是否开启记录响应参数，默认不开启
 }
 ```
 
 
 
 ## 3 优雅的Debug
-通过开启``debug``配置和命令行的``export EGO_DEBUG=true``，我们就可以在测试环境里看到请求里的配置名、地址、耗时、请求数据、响应数据
-![image](../../images/client-grpc.png)
+通过开启``debug``配置和命令行的``export EGO_DEBUG=true``，
+我们可以在测试环境里看到请求里的行号、配置名、请求地址、耗时、请求数据、响应数据
+
+![img_1.png](../../images/frame/client/grpc/client_grpc1.png)
+
+并且使用``Goland``同学，可以直接通过行号点击到对应的代码路径
+
 
 ## 4 直连gRPC
 ## 4.1 用户配置
