@@ -135,6 +135,9 @@ module.exports = {
                     ],
                 },
             ],
+            "/web/": [
+                "前端优化",
+            ],
             "/awesome/": [
                 "errors",
                 "gracefulstop",
