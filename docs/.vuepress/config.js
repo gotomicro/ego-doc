@@ -51,6 +51,7 @@ module.exports = {
             "/summary/": [""], //这样自动生成对应文章
             "/frame/": [
                 "quickstart/quickstart",
+                "releasenote",
                 {
                     title: "核心模块",
                     collapsable: false, // 可选的, 默认值是 true,
