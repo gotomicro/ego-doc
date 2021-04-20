@@ -1,14 +1,14 @@
 const moment = require("moment");
 module.exports = {
     title: "EGO",
-    description: "最简单的GO框架",
+    description: "最简单的GO微服务框架",
     head: [
         ["link", { rel: "icon", href: "/logo.png" }],
         [
             "meta",
             {
                 name: "keywords",
-                content: "Go,golang,ego,micro service,gRPC",
+                content: "微服务,框架,ego,微服务框架,Go微服务框架,golang,micro service,gRPC",
             },
         ],
     ],

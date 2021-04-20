@@ -6,5 +6,5 @@
 * 修改readme文档，描述客户端和服务端gRPC链路玩法
 * 优化gRPC客户端设置metadata信息的性能
 * 根据客户端头文件的控制，返回gRPC服务端的CPU利用率
-
-## v0.5.4
+* 支持gRPC流式客户端设置metadata信息
+* panic增加配置名

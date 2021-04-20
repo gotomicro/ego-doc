@@ -113,6 +113,7 @@ if source, present = p.sources[name]; present {
     p.lock.RUnlock()
     return source
 }
+p.lock.RUnlock()
 
 // The source wasn't found, so we'll create it.
 p.lock.Lock()
