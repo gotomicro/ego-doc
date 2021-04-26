@@ -93,6 +93,13 @@ module.exports = {
                     ],
                 },
                 {
+                    title: "网关模块",
+                    collapsable: false, // 可选的, 默认值是 true,
+                    children: [
+                        "gateway/gateway",
+                    ],
+                },
+                {
                     title: "治理模块",
                     collapsable: false, // 可选的, 默认值是 true,
                     children: [
@@ -135,6 +142,7 @@ module.exports = {
                         "chapter3/服务发现",
                     ],
                 },
+
                 {
                     title: "第八章 治理",
                     collapsable: false, // 可选的, 默认值是 true,
