@@ -8,3 +8,10 @@
 * 根据客户端头文件的控制，返回gRPC服务端的CPU利用率
 * 支持gRPC流式客户端设置metadata信息
 * panic增加配置名
+
+## v0.5.5
+* 优化websocket
+* 支持http到gRPC的代理
+* 升级gin
+* 支持grpc在连接出问题时候报错
+* 支持业务日志的traceid
