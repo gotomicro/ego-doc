@@ -89,6 +89,7 @@ module.exports = {
                         "client/redis",
                         "client/mongo",
                         "client/kafka",
+                        "client/ek8s",
 
                     ],
                 },

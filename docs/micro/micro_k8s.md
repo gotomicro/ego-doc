@@ -69,7 +69,7 @@
 
 * 代码风格迥异，不易上手
 * 统一所有包的使用方式，包括配置驱动、统一错误码等
-* 第三方包的wrap，增加access log(req,resp)、slow log、trace、metric、timeout
+* 第三方包的wrap，增加access log(req,res)、slow log、trace、metric、timeout
 * 组件最佳配置
 
 * 没有框架、组件库的不统一
