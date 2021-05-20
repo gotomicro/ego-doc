@@ -31,8 +31,8 @@ module.exports = {
                 link: "/micro/",
             },
             {
-                text: "Web优化",
-                link: "/web/",
+                text: "手册",
+                link: "/handbook/",
             },
             {
                 text: "Awesome",
@@ -152,8 +152,27 @@ module.exports = {
                     ],
                 },
             ],
-            "/web/": [
-                "前端优化",
+            "/handbook/": [
+                {
+                    title: "K8S",
+                    collapsable: false, // 可选的, 默认值是 true,
+                    children: [
+                        "docker_hub",
+                        "docker_images",
+                        "k8s_intro",
+                        "k8s_deployment",
+                        "k8s_pod",
+                        "kubectl_install",
+                        "kubectl_cmd",
+                    ],
+                },
+                {
+                    title: "WEB",
+                    collapsable: false, // 可选的, 默认值是 true,
+                    children: [
+                        "前端优化",
+                    ],
+                },
             ],
             "/awesome/": [
                 "errors",

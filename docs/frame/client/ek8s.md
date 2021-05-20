@@ -36,7 +36,7 @@ addr = "k8s:///test:9090"
 #balancerName = "round_robin" # 默认值
 #dialTimeout = "1s" # 默认值
 #enableAccessInterceptor = true
-#enableAccessInterceptorReply = true
+#enableAccessInterceptorRes = true
 #enableAccessInterceptorReq = true
 ```
 ### 5.2 用户代码
