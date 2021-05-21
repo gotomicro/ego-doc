@@ -1,6 +1,6 @@
 # GORM
 ## Example
-[项目地址](https://github.com/gotomicro/ego-component/tree/master/egorm/examples/gorm)
+[项目地址](https://github.com/gotomicro/ego-component/tree/master/egorm/examples)
 
 ## GORM配置
 ```go

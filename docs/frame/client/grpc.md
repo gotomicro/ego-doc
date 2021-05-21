@@ -232,6 +232,7 @@ func callGrpc() error {
 ### 7.1 用户配置
 ```toml
 [trace.jaeger] # 启用链路的核心配置
+	ServiceName = "client"
 [grpc.test]
     debug = true # 开启后并加上export EGO_DEBUG=true，可以看到每次grpc请求，配置名、地址、耗时、请求数据、响应数据
     addr = "127.0.0.1:9002"
