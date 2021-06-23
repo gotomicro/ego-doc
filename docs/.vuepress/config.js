@@ -60,6 +60,14 @@ module.exports = {
                         "core/config",
                         "core/logger",
                         "core/trace",
+                        {
+                            title: "服务注册与发现",
+                            collapsable: false, // 可选的, 默认值是 true,
+                            children: [
+                                "core/ETCD服务注册与发现使用",
+                                "core/ETCD服务注册与发现原理",
+                            ],
+                        },
                     ],
                 },
                 {
