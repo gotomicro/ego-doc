@@ -49,7 +49,7 @@ import (
 func main() {
 	if err := ego.New().Serve(func() server.Server {
 		server := egrpc.Load("server.grpc").Build()
-		helloworld.RegisterGreeterServer(server.Server, &Greeter{})
+		helloworld.RegisterGreeterServer(server.Server, &Greeter{server: server})
 		return server
 	}()).Run(); err != nil {
 		elog.Panic("startup", elog.Any("err", err))
@@ -58,6 +58,7 @@ func main() {
 
 type Greeter struct {
 	server *egrpc.Component
+	helloworld.UnimplementedGreeterServer
 }
 
 func (g Greeter) SayHello(context context.Context, request *helloworld.HelloRequest) (*helloworld.HelloReply, error) {
@@ -71,6 +72,7 @@ func (g Greeter) SayHello(context context.Context, request *helloworld.HelloRequ
 ### 4.1 用户配置
 ```toml
 [trace.jaeger] # 启用链路的核心配置
+  ServiceName = "server"
 [server.grpc]
   host = "127.0.0.1"
   port = 9002

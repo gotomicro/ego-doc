@@ -1,8 +1,8 @@
 # HTTP服务
-## Example
+## 1 Example
 [项目地址](https://github.com/gotomicro/ego/tree/master/examples/server/http)
 
-## HTTP配置
+## 2 HTTP配置
 ```go
 type Config struct {
 	Host                    string        // IP地址，默认127.0.0.1
@@ -15,14 +15,14 @@ type Config struct {
 }
 ```
 
-## 用户配置
+## 3 用户配置
 ```toml
 [server.http]
   host = "127.0.0.1"
   port = 9001
 ```
 
-## 用户代码
+## 3.1 用户代码
 配置创建一个 ``http`` 的配置项，其中内容按照上文配置进行填写。以上这个示例里这个配置key是``server.http``
 
 代码中创建一个 ``HTTP`` 服务， egin.Load("{{你的配置key}}").Build() ，代码中的 ``key`` 和配置中的 ``key`` 要保持一致。创建完 ``HTTP`` 服务后， 将他添加到 ``ego new`` 出来应用的 ``Serve`` 方法中，之后使用的方法和 ``gin`` 就完全一致。
@@ -52,4 +52,35 @@ func main() {
 }
 ```
 
+## 4 开启链路的服务
+### 4.1 用户配置
+```toml
+[server.http]
+    port = 9007
+[trace.jaeger]
+    ServiceName = "server"
+```
+### 4.2 用户代码
+```golang
+//  export EGO_DEBUG=true && go run main.go --config=config.toml
+func main() {
+	if err := ego.New().Serve(func() *egin.Component {
+		server := egin.Load("server.http").Build()
+		server.GET("/hello", func(ctx *gin.Context) {
+			// Get traceId from Request's context
+			span, _ := etrace.StartSpanFromContext(ctx.Request.Context(), "Handle: /Hello")
+			defer span.Finish()
+
+			ctx.JSON(200, "Hello client: "+ctx.GetHeader("app"))
+		})
+
+		return server
+	}()).Run(); err != nil {
+		elog.Panic("startup", elog.FieldErr(err))
+	}
+}
+
+```
+### 4.2 jaegerUI中查看
+![trace-in-JaegerUI](../../images/trace-jaeger-http.png)
 <Vssue title="Server-http" />

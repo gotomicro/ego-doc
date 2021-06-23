@@ -76,4 +76,39 @@ func callHTTP() error {
 }
 ```
 
+## 6 使用HTTP的链路
+### 6.1 用户配置
+```toml
+[server.http]
+    port = 9007
+[trace.jaeger] # 启用链路的核心配置
+    ServiceName = "server"
+```
+### 6.2 用户代码
+```golang
+//  export EGO_DEBUG=true && go run main.go --config=config.toml
+
+func callHTTP() error {
+	// 拉去上下文
+	span, ctx := etrace.StartSpanFromContext(context.Background(), "callHTTP()")
+	defer span.Finish()
+
+	req := httpComp.R()
+	// Inject traceId Into Header
+	c1 := etrace.HeaderInjector(ctx, req.Header)
+	
+	info, err := req.SetContext(c1).Get("/hello")
+	if err != nil {
+		return err
+	}
+	fmt.Println(info)
+	return nil
+}
+
+
+```
+
+### 6.3 在JaegerUI中查看链路信息
+![trace-in-JaegerUI](../../images/trace-jaeger-http.png)
+
 <Vssue title="Client-http" />
