@@ -140,6 +140,7 @@ module.exports = {
                     children: [
                         "chapter2/flag",
                         "chapter2/config",
+                        "chapter2/logger",
                     ],
                 },
                 {
