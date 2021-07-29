@@ -37,6 +37,7 @@
 
 
 以上就是Ego将日志中实现了链路的数据流向。快来体验吧。
+[如何传递和使用链路，请点击链接](https://ego.gocn.vip/frame/core/trace.html)
 
 体验版本为：
 * github.com/gotomicro/ego@v0.6.2
