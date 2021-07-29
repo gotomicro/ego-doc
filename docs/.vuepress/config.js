@@ -141,6 +141,7 @@ module.exports = {
                         "chapter2/flag",
                         "chapter2/config",
                         "chapter2/logger",
+                        "chapter2/trace",
                     ],
                 },
                 {

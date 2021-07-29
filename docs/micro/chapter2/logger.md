@@ -26,7 +26,8 @@ https://help.aliyun.com/document_detail/157317.htm?spm=a2c4g.11186623.2.5.177a99
 * 容器标准输出：https://help.aliyun.com/document_detail/66658.html?spm=a2c4g.11186623.6.652.22fd25f4NHxqtk
 
 阿里云的日志采集方案
-![img.png](img.png)
+
+![img.png](../../images/collectlogger.png)
 
 
 ### 日志输出：Stdout or 文件
