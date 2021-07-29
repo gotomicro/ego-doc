@@ -38,7 +38,7 @@
 
 以上就是Ego将日志中实现了链路的数据流向。快来体验吧。
 
-更新版本为：
+体验版本为：
 * github.com/gotomicro/ego@v0.6.2
 * github.com/gotomicro/ego-component/egorm@v0.2.2
 * github.com/gotomicro/ego-component/eredis@v0.2.3
