@@ -32,6 +32,10 @@
 
 ![img.png](../../images/egoaccesstrace2.png)
 
+最终达到的效果，例如`MySQL`的`access`日志中记录了`uid`和`trace id`信息。
+![img.png](../../images/egoaccesstrace3.png)
+
+
 以上就是Ego将日志中实现了链路的数据流向。快来体验吧。
 
 更新版本为：
