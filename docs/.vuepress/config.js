@@ -3,7 +3,7 @@ module.exports = {
     title: "EGO",
     description: "最简单的GO微服务框架",
     head: [
-        ["link", { rel: "icon", href: "/logo.png" }],
+        ["link", {rel: "icon", href: "/logo.png"}],
         [
             "meta",
             {
@@ -154,7 +154,13 @@ module.exports = {
                         "chapter3/服务发现",
                     ],
                 },
-
+                {
+                    title: "第四章 测试",
+                    collapsable: false, // 可选的, 默认值是 true,
+                    children: [
+                        "chapter4/unittest",
+                    ],
+                },
                 {
                     title: "第八章 治理",
                     collapsable: false, // 可选的, 默认值是 true,
@@ -226,7 +232,7 @@ module.exports = {
                 repo: 'ego-doc', //github 一个项目的名称
                 clientId: '601dc4dbe9ae8e87d76f',//注册的 Client ID
                 clientSecret: 'de308ea181268f753305b1f7c91b6d7712be694a',//注册的 Client Secret
-                autoCreateIssue:true // 自动创建评论，默认是false，最好开启，这样首次进入页面的时候就不用去点击创建评论的按钮了。
+                autoCreateIssue: true // 自动创建评论，默认是false，最好开启，这样首次进入页面的时候就不用去点击创建评论的按钮了。
             },
         ],
         "@vuepress/back-to-top",
