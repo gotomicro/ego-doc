@@ -1,4 +1,5 @@
 const moment = require("moment");
+const path = require('path')
 module.exports = {
     title: "EGO",
     description: "最简单的GO微服务框架",
@@ -12,7 +13,32 @@ module.exports = {
             },
         ],
     ],
-
+    configureWebpack: () => {
+        const NODE_ENV = process.env.NODE_ENV
+        //判断是否是生产环境
+        if(NODE_ENV === 'production'){
+            return {
+                output: {
+                    publicPath: 'https://cdn.gocn.vip/ego/'
+                },
+                resolve: {
+                    //配置路径别名
+                    alias: {
+                        'public': path.resolve(__dirname, './public')
+                    }
+                }
+            }
+        }else{
+            return {
+                resolve: {
+                    //配置路径别名
+                    alias: {
+                        'public': path.resolve(__dirname, './public')
+                    }
+                }
+            }
+        }
+    },
     markdown: {
         lineNumbers: true, // 代码块显示行号
     },

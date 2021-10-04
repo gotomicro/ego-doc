@@ -1,0 +1,22 @@
+name: Deploy docs
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout codebase
+        uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+      - name: Build docs
+        run: npm install && npm run docs:build
+      - name: Install ossutil
+        run: wget https://github.91chifun.workers.dev/https://github.com//gotomicro/uploadcdn/releases/download/v0.1.0/uploadcdn-client.tar.gz && tar xvf uploadcdn-client.tar.gz && chmod 755 uploadcdn-client
+      - name: Upload docs
+        run: ./uploadcdn-client -id=${{ secrets.UPLOAD_CDN_CLIENT_ID }} -secret=${{ secrets.UPLOAD_CDN_CLIENT_SECRET }} -dir=./docs/.vuepress/dist
+
+
