@@ -129,6 +129,13 @@ module.exports = {
                     ],
                 },
                 {
+                    title: "工具",
+                    collapsable: false, // 可选的, 默认值是 true,
+                    children: [
+                        "tool/tool",
+                    ],
+                },
+                {
                     title: "网关模块",
                     collapsable: false, // 可选的, 默认值是 true,
                     children: [
