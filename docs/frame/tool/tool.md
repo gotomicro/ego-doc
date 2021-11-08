@@ -1,4 +1,9 @@
 # 全家桶工具
+## example
+EGO服务端生成PB，生成单元测试例子：
+
+https://github.com/gotomicro/go-engineering/tree/main/chapter_ego_unittest
+
 ## 下载工具
 使用bash脚本下载工具
 ```bash
@@ -13,24 +18,26 @@ bash <(curl -L https://raw.githubusercontent.com/gotomicro/egoctl/main/getlatest
 * /usr/local/bin/protoc-gen-go-http
 * /usr/local/bin/egoctl
 
-
 ## 软连接和生成测试代码 
 ```makefile
 PROTO:=protos
 PROJECT_NAME=helloworld
 
-link-askuy:export PROTO_DIR=/Users/askuy/code/github/gotomicro/go-engineering/chapter_proto
-link-askuy:
+# 挂载Proto
+link:export PROTO_DIR=../chapter_proto
+link:
 	@echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>make $@<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
 	@ if [[ ! -L $(APP_PATH)/$(PROTO) ]]; then ln -s $(PROTO_DIR) $(APP_PATH)/$(PROTO); echo "link created"; else echo "link exists"; fi;
 
+# 生成pb
 gen-proto:
-	@protoc -I ./$(PROTO) --go_out=paths=source_relative:./$(PROTO) ./$(PROTO)/{PROJECT_NAME}/*.proto
-	@protoc -I ./$(PROTO) --go-grpc_out=paths=source_relative:./$(PROTO) ./$(PROTO)/{PROJECT_NAME}/*.proto
-	@protoc -I ./$(PROTO) --go-errors_out=paths=source_relative:./$(PROTO) ./$(PROTO)/{PROJECT_NAME}/*.proto
+	@protoc -I ./$(PROTO) --go_out=paths=source_relative:./$(PROTO) ./$(PROTO)/$(PROJECT_NAME)/*.proto
+	@protoc -I ./$(PROTO) --go-grpc_out=paths=source_relative:./$(PROTO) ./$(PROTO)/$(PROJECT_NAME)/*.proto
+	@protoc -I ./$(PROTO) --go-errors_out=paths=source_relative:./$(PROTO) ./$(PROTO)/$(PROJECT_NAME)/*.proto
 
+# 生成单元测试
 gen-test:
-	@protoc -I ./$(PROTO)  --go-test_out=out=./server/router,paths=source_relative:. ./${PROTO}/{PROJECT_NAME}/*.proto
+	@protoc -I ./$(PROTO)  --go-test_out=out=./server/router,paths=source_relative:. ./$(PROTO)/$(PROJECT_NAME)/*.proto
 ```
 
 ## 使用原理 

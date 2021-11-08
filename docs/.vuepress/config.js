@@ -12,6 +12,15 @@ module.exports = {
                 content: "微服务,框架,ego,微服务框架,Go微服务框架,golang,micro service,gRPC",
             },
         ],
+        ["script",{},`
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5b74978e3772cd939e423b6c55896b6d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+        `]
     ],
     configureWebpack: () => {
         const NODE_ENV = process.env.NODE_ENV
