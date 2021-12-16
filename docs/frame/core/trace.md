@@ -20,7 +20,7 @@ func UserInfo(c *gin.Context) {
 ```go
 func (*Order) OrderInfo(ctx context.Context, req *OrderInfoReq) (*OrderInfoReply, error) {
     ...
-    reply, err := invoker.UserSvc.UserInfo(cctx, &UserInfoReq{
+    reply, err := invoker.UserSvc.UserInfo(ctx, &UserInfoReq{
         Uid: c.Query("uid"),
     })
     ...
@@ -44,6 +44,61 @@ func (*Order) OrderInfo(ctx context.Context, req *OrderInfoReq) (*OrderInfoReply
 func (*Order) OrderInfo(ctx context.Context, req *OrderInfoReq) (*OrderInfoReply, error) {
     ...
     invoker.Redis.Get(ctx, "hello")
+    ...
+}
+```
+
+### HTTP客户端
+resty没有很好的拦截器，不太好封装链路，所以只能自行调用
+```go
+tracer := etrace.NewTracer(trace.SpanKindClient)
+req := httpComp.R()
+ctx, span := tracer.Start(context.Background(), "callHTTP()", propagation.HeaderCarrier(req.Header))
+defer span.End()
+
+fmt.Println(span.SpanContext().TraceID())
+info, err := req.SetContext(ctx).Get("http://127.0.0.1:9007/hello")
+if err != nil {
+    return err
+}
+fmt.Println(info)
+```
+
+## 业务记录链路id日志
+在ego里面提供了链路id的函数，如下所示
+```go
+// FieldCtxTid 设置链路id
+func FieldCtxTid(ctx context.Context) Field {
+	return String("tid", etrace.ExtractTraceID(ctx))
+}
+```
+业务记录日志只需要如下即可
+### HTTP服务
+在`HTTP`服务中的链路的`Context`指的是`c.Request.Context()`。大部分的新手第一次在使用`gin`框架，会将`gin.Context`作为链路`Context`传递下去，而这个用法是错误的用法。以下举例一个在HTTP服务里调用gRPC传递`Context`方式。
+```go
+func UserInfo(c *gin.Context) {
+    reply, err := invoker.UserSvc.UserInfo(c.Request.Context(), &UserInfoReq{
+        Uid: c.Query("uid"),
+    })
+    if err != nil {
+        elog.Error("请求用户服务错误",elog.FieldCtxTid(c.Request.Context()),elog.FieldErr(err))
+        return
+    }
+    ...
+}
+```
+
+### grpc服务
+```go
+func (*Order) OrderInfo(ctx context.Context, req *OrderInfoReq) (*OrderInfoReply, error) {
+    ...
+    reply, err := invoker.UserSvc.UserInfo(ctx, &UserInfoReq{
+        Uid: c.Query("uid"),
+    })
+    if err != nil {
+        elog.Error("请求用户服务错误",elog.FieldCtxTid(ctx),elog.FieldErr(err))
+        return
+    }
     ...
 }
 ```
