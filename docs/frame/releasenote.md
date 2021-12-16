@@ -2,7 +2,8 @@
 ## v0.8.0
 * 支持server，client，producer，consumer四种方式的opentelemetry
 * 支持通过环境变量EGO_LOG_WRITER，指定输出file或者stderr
-有不兼容版本升级，配套组件需要升级到
+  
+* 因为opentrace的jeager不在维护，后续jaeger都在opentelemetry中维护。新的opentelemetry有新的规范: [https://www.w3.org/TR/trace-context/](https://www.w3.org/TR/trace-context/)，导致链路会有不兼容版本升级，配套组件需要升级到
 * ekafka => v0.4.1
 * egorm => v0.3.0
 * eredis => v0.3.0
