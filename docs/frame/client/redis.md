@@ -1,10 +1,25 @@
 # Redis
 
-## Example
+## 1 简介
+对 [go-redis](https://github.com/go-redis/redis) 进行了轻量封装，并提供了以下功能：
+- 规范了标准配置格式，提供了统一的 Load().Build() 方法。
+- 支持自定义拦截器
+- 提供了默认的 Debug 拦截器，开启 Debug 后可输出 Request、Response 至终端。
+- 提供了默认的 Metric 拦截器，开启后可采集 Prometheus 指标数据
+- 提供了redis的分布式锁
+- 提供了redis的分布式锁的定时任务
 
-[项目地址](https://github.com/gotomicro/ego-component/tree/master/eredis/examples/redis)
+## 2 说明
+* [example地址](https://github.com/ego-component/eredis/tree/master/examples)
+* ego版本：``ego@v1.0.0``
+* eredis版本: ``eredis@1.0.0``
 
-## Redis配置
+## 3 使用方式
+```bash
+go get github.com/ego-component/eredis
+```
+
+## 4 Redis配置
 
 ``` go
 type config struct {
@@ -33,8 +48,8 @@ type config struct {
 }
 ```
 
-## 用户配置
-
+## 5 普通Redis查询
+### 5.1 用户配置
 ```toml
 # 常用的stub单实例配置示例
 [redis.stub]
@@ -55,23 +70,12 @@ type config struct {
    addrs = ["127.0.0.1:26379", "127.0.0.1:26380", "127.0.0.1:26381"] # sentinel模式下必须配置"addrs"
    masterName = "my-sentinel-master-name" # sentinel 模式下必须配置"masterName"
 ```
-
-## 优雅的Debug
-
+### 5.2 优雅的Debug
 通过开启 `debug` 配置和命令行的 `export EGO_DEBUG=true`，我们就可以在测试环境里看到请求里的配置名、地址、耗时、请求数据、响应数据
 
-![image](../../images/client-redis.png)
+![image](../../images/eredis/ego_debug.png)
 
-## 用户代码
-
-::: tip
-客户端组件均使用go mod子包管理，使用该组件，一定要使用下面的go get命令
-:::
-
-``` bash
-go get github.com/gotomicro/ego-component/eredis
-```
-
+### 5.3 用户代码
 配置创建一个 `redis` 的配置项，其中内容按照上文配置进行填写。以上这个示例里这个配置key是`redis.test`
 
 代码中创建一个 `redis` 实例 `eredis.Load("key").Build()`，代码中的 `key` 和配置中的 `key` 要保持一致。创建完 `redis` 实例后，就可以直接使用他对 `redis` 进行 `crud` 。
@@ -148,6 +152,75 @@ func testRedis() error {
     fmt.Println(str)
     return nil
 }
+```
+
+## 6 Redis的日志
+任何redis的请求都会记录redis的错误access日志，如果需要对redis的日志做定制化处理，可参考以下使用方式。
+
+### 6.1 开启redis的access日志
+线上在并发量不高，或者核心业务下可以开启全量access日志，这样方便我们排查问题
+
+### 6.2 开启日志方式
+在原有的redis配置中，加入以下三行配置，redis的日志里就会记录响应的数据
+```toml
+[redis.test]
+enableAccessInterceptor=true       # 是否开启，记录请求数据
+enableAccessInterceptorReq=true    # 是否开启记录请求参数
+enableAccessInterceptorRes=true    # 是否开启记录响应参数
+```
+
+![img.png](../../images/eredis/enable_req_res.png)
+
+### 6.3 开启自定义日志字段的数据
+在使用了ego的自定义字段功能`export EGO_LOG_EXTRA_KEYS=X-Ego-Uid`，将对应的数据塞入到context中，那么redis的access日志就可以记录对应字段信息。
+参考 [详细文档](https://ego.gocn.vip/micro/chapter2/trace.html#_6-ego-access-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%93%BE%E8%B7%AF) ：
+```go
+func testRedis() error {
+    ctx := context.Background()
+    ctx = context.WithValue(ctx, "X-Ego-Uid", 9527)
+    err := eredisClient.Set(ctx, "hello", "world", 0)
+    fmt.Println("set hello", err)
+    
+    str, err := eredisClient.Get(ctx, "hello")
+    fmt.Println("get hello", str, err)
+    
+    str, err = eredisClient.Get(ctx, "lee")
+    fmt.Println("Get lee", errors.Is(err, eredis.Nil), "err="+err.Error())
+    
+    return nil
+}
+```
+
+## 7 Redis的定时任务锁
+
+```go
+// export EGO_DEBUG=true && go run main.go --config=config.toml
+func main() {
+	err := ego.New().Invoker(initRedis).Cron(cronJob()).Run()
+	if err != nil {
+		elog.Panic("startup", elog.FieldErr(err))
+	}
+}
+
+func initRedis() error {
+	redis = eredis.Load("redis.test").Build()
+	return nil
+}
+
+func cronJob() ecron.Ecron {
+	locker := ecronlock.DefaultContainer().Build(ecronlock.WithClient(redis))
+	cron := ecron.Load("cron.default").Build(
+		ecron.WithLock(locker.NewLock("ego-component:cronjob:syncXxx")),
+		ecron.WithJob(helloWorld),
+	)
+	return cron
+}
+
+func helloWorld(ctx context.Context) error {
+	log.Println("cron job running")
+	return nil
+}
+
 ```
 
 <Vssue title="Client-redis" />

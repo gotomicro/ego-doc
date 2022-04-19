@@ -7,8 +7,9 @@
 - 提供了默认的 Metric 拦截器，开启后可采集 Prometheus 指标数据
 - 提供了默认的 OpenTelemetry 拦截器，开启后可采集 Tracing Span 数据
 
-## 2 Example
-* [项目地址](https://github.com/ego-component/egorm/tree/master/examples)
+## 2 说明
+* [example地址](https://github.com/ego-component/egorm/tree/master/examples)
+* [文档地址](https://ego.gocn.vip/frame/client/gorm.html#_1-%E7%AE%80%E4%BB%8B)
 * ego版本：``ego@v1.0.0``
 * egorm版本: ``egorm@1.0.0``
 
@@ -39,19 +40,19 @@ type Config struct {
 ```
 
 ## 5 普通GORM查询
-## 5.1 用户配置
+### 5.1 用户配置
 ```toml
 [mysql.test]
    debug = true # ego重写gorm debug，打开后可以看到，配置名、代码执行行号、地址、耗时、请求数据、响应数据
    dsn = "root:root@tcp(127.0.0.1:3306)/ego?charset=utf8&parseTime=True&loc=Local&readTimeout=1s&timeout=1s&writeTimeout=3s"
 ```
 
-## 5.2 优雅的Debug
+### 5.2 优雅的Debug
 通过开启``debug``配置和命令行的``export EGO_DEBUG=true``，我们就可以在测试环境里看到请求里的配置名、地址、耗时、请求数据、响应数据
 ![image](../../images/egorm/ego_debug.png)
 当然你也可以开启``gorm``原生的调试，将``rawDebug``设置为``true``
 
-## 5.3 用户代码
+### 5.3 用户代码
 配置创建一个 ``gorm`` 的配置项，其中内容按照上文配置进行填写。以上这个示例里这个配置key是``gorm.test``
 
 代码中创建一个 ``gorm`` 实例 ``egorm.Load("key").Build()``，代码中的 ``key`` 和配置中的 ``key`` 要保持一致。创建完 ``gorm`` 实例后，就可以直接使用他对 ``db`` 进行 ``crud`` 。
@@ -140,7 +141,7 @@ enableDetailSQL=true       # 记录sql时,是否打印包含参数的完整sql�
 
 ### 6.5 开启自定义日志字段的数据
 在使用了ego的自定义字段功能`export EGO_LOG_EXTRA_KEYS=X-Ego-Uid`，将对应的数据塞入到context中，那么gorm的access日志就可以记录对应字段信息。
-参考[详细文档](https://ego.gocn.vip/micro/chapter2/trace.html#_6-ego-access-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%93%BE%E8%B7%AF)：
+参考 [详细文档](https://ego.gocn.vip/micro/chapter2/trace.html#_6-ego-access-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%93%BE%E8%B7%AF) ：
 ```go
 func testDB() error {
 	var user User
