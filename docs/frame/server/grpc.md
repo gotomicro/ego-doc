@@ -2,9 +2,14 @@
 ## 1 Example
 [项目地址](https://github.com/gotomicro/ego/tree/master/examples/server/http)
 
-ego版本：``ego@v0.3.14``
+ego版本：``ego@v1.0.0``
 
-## 2 gRPC配置
+## 2 使用方式
+```bash
+go get github.com/ego-component/ego
+```
+
+## 3 gRPC配置
 ```go
 type Config struct {
 	Host                       string        // IP地址，默认0.0.0.0
@@ -20,15 +25,15 @@ type Config struct {
 }
 ```
 
-## 3 普通服务
-### 3.1 用户配置
+## 4 普通服务
+### 4.1 用户配置
 ```toml
 [server.grpc]
   host = "127.0.0.1"
   port = 9002
 ```
 
-### 3.2 用户代码
+### 4.2 用户代码
 配置创建一个 ``grpc`` 的配置项，其中内容按照上文配置进行填写。以上这个示例里这个配置key是``server.grpc``
 
 代码中创建一个 ``gRPC`` 服务， egrpc.Load("{{你的配置key}}").Build()，代码中的 ``key`` 和配置中的 ``key`` 要保持一致。创建完 ``gRPC`` 服务后， 将他添加到 ``ego new`` 出来应用的 ``Serve`` 方法中，之后使用的方法和 ``gRPC`` 就完全一致。
@@ -68,8 +73,8 @@ func (g Greeter) SayHello(context context.Context, request *helloworld.HelloRequ
 }
 ```
 
-## 4 开启链路的服务
-### 4.1 用户配置
+## 5 开启链路的服务
+### 5.1 用户配置
 ```toml
 [trace.jaeger] # 启用链路的核心配置
   ServiceName = "server"
@@ -77,19 +82,19 @@ func (g Greeter) SayHello(context context.Context, request *helloworld.HelloRequ
   host = "127.0.0.1"
   port = 9002
 ```
-### 4.2 测试代码
+### 5.2 测试代码
 [gRPC直连查看链路id](https://github.com/gotomicro/ego/tree/master/examples/grpc/direct)
-#### 4.2.1 服务端链路信息
+#### 5.2.1 服务端链路信息
 ![image](../../images/trace-server-grpc.png)
 
-#### 4.2.2 客户端链路信息
+#### 5.2.2 客户端链路信息
 ![image](../../images/trace-client-grpc.png)
 
-## 5 开启服务端详细日志信息
-### 5.1 测试代码
+## 6 开启服务端详细日志信息
+### 6.1 测试代码
 [gRPC查看详细信息](https://github.com/gotomicro/ego/tree/master/examples/grpc/direct)
 
-### 5.2 用户配置
+### 6.2 用户配置
 ```toml
 [server.grpc]
   host = "127.0.0.1"
@@ -97,16 +102,16 @@ func (g Greeter) SayHello(context context.Context, request *helloworld.HelloRequ
   enableAccessInterceptorReq=true          # 是否开启记录请求参数，默认不开启
   enableAccessInterceptorRes=true          # 是否开启记录响应参数，默认不开启
 ```
-#### 5.3 服务端详细信息
+#### 6.3 服务端详细信息
 ![image](../../images/server-resp-info.png)
 
-## 6 gRPC获取Header头信息
+## 7 gRPC获取Header头信息
 * app
 * x-trace-id
 * client-ip
-* cpu(待实现)
+* cpu
 
-### 6.1 服务端获取对端应用名的header信息
+### 7.1 服务端获取对端应用名的header信息
 前提
 * gRPC客户端使用了EGO设置app应用名中间件
 ```go
@@ -123,7 +128,7 @@ func getPeerName(ctx context.Context) string {
 }
 ```
 
-### 6.2 服务端获取trace id的header信息
+### 7.2 服务端获取trace id的header信息
 前提：
 * gRPC客户端使用了EGO设置trace id中间
 * gRPC客户端开启链路
@@ -138,7 +143,7 @@ if opentracing.IsGlobalTracerRegistered() {
 }
 ```
 
-### 6.3 服务端获取client ip的header信息
+### 7.3 服务端获取client ip的header信息
 ```go
 func getPeerIP(ctx context.Context) string {
 	md, ok := metadata.FromIncomingContext(ctx)
@@ -164,7 +169,7 @@ func getPeerIP(ctx context.Context) string {
 	return ""
 }
 ```
-### 6.4 服务端获取cpu的header信息
+### 7.4 服务端获取cpu的header信息
 未来用于p2c的负载均衡，未实现
 
 <Vssue title="Server-grpc" />
