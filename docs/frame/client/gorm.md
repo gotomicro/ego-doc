@@ -1,16 +1,23 @@
 # GORM
-## 1 Example
-[项目地址](https://github.com/ego-component/egorm/tree/master/examples)
+## 1 简介
+对 [gorm](https://github.com/go-gorm/gorm) 进行了轻量封装，并提供了以下功能：
+- 规范了标准配置格式，提供了统一的 Load().Build() 方法。
+- 支持自定义拦截器
+- 提供了默认的 Debug 拦截器，开启 Debug 后可输出 Request、Response 至终端。
+- 提供了默认的 Metric 拦截器，开启后可采集 Prometheus 指标数据
+- 提供了默认的 OpenTelemetry 拦截器，开启后可采集 Tracing Span 数据
 
-ego版本：``ego@v1.0.0``
-egorm版本: ``egorm@1.0.0``
+## 2 Example
+* [项目地址](https://github.com/ego-component/egorm/tree/master/examples)
+* ego版本：``ego@v1.0.0``
+* egorm版本: ``egorm@1.0.0``
 
-## 2 使用方式
+## 3 使用方式
 ```bash
 go get github.com/ego-component/egorm
 ```
 
-## 3 GORM配置
+## 4 GORM配置
 ```go
 type Config struct {
     Dialect                    string        // 选择数据库种类，默认mysql,postgres,mssql
@@ -31,20 +38,20 @@ type Config struct {
 }
 ```
 
-## 4 普通GORM查询
-## 4.1 用户配置
+## 5 普通GORM查询
+## 5.1 用户配置
 ```toml
 [mysql.test]
    debug = true # ego重写gorm debug，打开后可以看到，配置名、代码执行行号、地址、耗时、请求数据、响应数据
    dsn = "root:root@tcp(127.0.0.1:3306)/ego?charset=utf8&parseTime=True&loc=Local&readTimeout=1s&timeout=1s&writeTimeout=3s"
 ```
 
-## 4.2 优雅的Debug
+## 5.2 优雅的Debug
 通过开启``debug``配置和命令行的``export EGO_DEBUG=true``，我们就可以在测试环境里看到请求里的配置名、地址、耗时、请求数据、响应数据
 ![image](../../images/egorm/ego_debug.png)
 当然你也可以开启``gorm``原生的调试，将``rawDebug``设置为``true``
 
-## 4.3 用户代码
+## 5.3 用户代码
 配置创建一个 ``gorm`` 的配置项，其中内容按照上文配置进行填写。以上这个示例里这个配置key是``gorm.test``
 
 代码中创建一个 ``gorm`` 实例 ``egorm.Load("key").Build()``，代码中的 ``key`` 和配置中的 ``key`` 要保持一致。创建完 ``gorm`` 实例后，就可以直接使用他对 ``db`` 进行 ``crud`` 。
@@ -103,13 +110,13 @@ func testDB() error {
 	return err
 }
 ```
-## 5 GORM的日志
+## 6 GORM的日志
 任何gorm的请求都会记录gorm的错误access日志，如果需要对gorm的日志做定制化处理，可参考以下使用方式。
 
-### 5.1 开启GORM的access日志
+### 6.1 开启GORM的access日志
 线上在并发量不高，或者核心业务下可以开启全量access日志，这样方便我们排查问题
 
-#### 5.1.1 开启日志方式
+#### 6.2 开启日志方式
 在原有的mysql配置中，加入以下三行配置，gorm的日志里就会记录响应的数据
 ```toml
 [mysql.test]
@@ -120,7 +127,7 @@ enableAccessInterceptorRes=true    # 是否开启记录响应参数
 
 ![img.png](../../images/egorm/enable_req_res.png)
 
-#### 5.1.2 开启日志的详细数据
+#### 6.3 开启日志的详细数据
 记录请求参数日志为了安全起见，默认是不开启详细的sql数据，记录的是参数绑定的SQL日志，如果需要开启详细数据，需要在配置里添加``
 ```toml
 [mysql.test]
@@ -128,10 +135,10 @@ enableDetailSQL=true       # 记录sql时,是否打印包含参数的完整sql�
 ```
 ![img.png](../../images/egorm/enable_req_res_detail.png)
 
-#### 5.1.3 开启日志的链路数据
+#### 6.4 开启日志的链路数据
 代码方面使用`db.WithContext(ctx)`，会在access日志中自动记录trace id信息
 
-#### 5.1.4 开启自定义日志字段的数据
+#### 6.5 开启自定义日志字段的数据
 在使用了ego的自定义字段功能`export EGO_LOG_EXTRA_KEYS=X-Ego-Uid`，将对应的数据塞入到context中，那么gorm的access日志就可以记录对应字段信息。
 参考[详细文档](https://ego.gocn.vip/micro/chapter2/trace.html#_6-ego-access-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%93%BE%E8%B7%AF)：
 ```go
