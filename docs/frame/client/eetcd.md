@@ -1,4 +1,4 @@
-# eetcd 组件使用指南
+# ETCD
 [![goproxy.cn](https://goproxy.cn/stats/github.com/ego-component/eetcd/badges/download-count.svg)](https://goproxy.cn/stats/github.com/ego-component/eetcd)
 [![Release](https://img.shields.io/github/v/release/ego-component/eetcd.svg?style=flat-square)](https://github.com/ego-component/eetcd)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
