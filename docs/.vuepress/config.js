@@ -133,6 +133,7 @@ var _hmt = _hmt || [];
                         "client/mongo",
                         "client/kafka",
                         "client/sentinel",
+                        "client/eetcd",
                         "client/ek8s",
 
                     ],
