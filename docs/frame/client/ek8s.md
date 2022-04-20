@@ -1,9 +1,20 @@
 # K8S
-## 1 Example
+[![goproxy.cn](https://goproxy.cn/stats/github.com/ego-component/ek8s/badges/download-count.svg)](https://goproxy.cn/stats/github.com/ego-component/ek8s)
+[![Release](https://img.shields.io/github/v/release/ego-component/ek8s.svg?style=flat-square)](https://github.com/ego-component/ek8s)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Example](https://img.shields.io/badge/Examples-2ca5e0?style=flat&logo=appveyor)](https://github.com/ego-component/ek8s/tree/master/examples)
+[![Doc](https://img.shields.io/badge/Docs-1?style=flat&logo=appveyor)](https://ego.gocn.vip/frame/client/gorm.html#_1-%E7%AE%80%E4%BB%8B)
+
+## 1 简洁
+- 规范了标准配置格式，提供了统一的 Load().Build() 方法。
+- 支持查询K8S信息
+- 根据K8S Endpoints调用gRPC
+
+## 2 Example
 [获取K8S信息](https://github.com/gotomicro/ego-component/tree/master/ek8s/examples/kubernetesinfo)
 [根据K8S endpoints调用gRPC](https://github.com/gotomicro/ego-component/tree/master/ek8s/examples/kubegrpc)
 
-## 2 K8S配置
+## 3 K8S配置
 ```go
 type Config struct {
     Addr                    string     // 地址
@@ -15,12 +26,10 @@ type Config struct {
 }
 ```
 
-## 3 默认配置
+## 4 默认配置
 * host: KUBERNETES_SERVICE_HOST 环境变量
 * port: KUBERNETES_SERVICE_PORT 环境变量
 * token: /var/run/secrets/kubernetes.io/serviceaccount/token 文件路径
-
-## 4 获取K8S信息
 
 ## 5 根据K8S信息，调用gRPC
 ### 5.1 K8S配置
