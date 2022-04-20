@@ -11,8 +11,8 @@
 - 根据K8S Endpoints调用gRPC
 
 ## 2 Example
-[获取K8S信息](https://github.com/gotomicro/ego-component/tree/master/ek8s/examples/kubernetesinfo)
-[根据K8S endpoints调用gRPC](https://github.com/gotomicro/ego-component/tree/master/ek8s/examples/kubegrpc)
+- [获取K8S信息](https://github.com/gotomicro/ego-component/tree/master/ek8s/examples/kubernetesinfo)
+- [根据K8S endpoints调用gRPC](https://github.com/gotomicro/ego-component/tree/master/ek8s/examples/kubegrpc)
 
 ## 3 K8S配置
 ```go
