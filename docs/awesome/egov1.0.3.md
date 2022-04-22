@@ -22,6 +22,7 @@ gRPC、HTTP、MySQL、Redis、Kafka组件已按照官方标准支持otel
 
 ### 2 EGO组件增加DEBUG模式能力
 debug模式的六元组能力：代码行号、配置名、目标地址、耗时、请求数据、响应数据
+
 gRPC、HTTP、MySQL、Redis、Kafka、Mongo组件在EGO_DEBUG模式下，支持直接打印业务代码运行的真正路径，在IDE模式下，可以直接点击该链接跳转到对应的代码地方
 
 gRPC的debug模式
@@ -37,8 +38,8 @@ id，去trace或者log中查看变慢的原因。
 
 ### 4 Gorm、Redis支持更强大的stat监控模式
 
-我们可以通过gorm的wait_count、wait_duration等9个监控指标，可以看到Go MySQL Client是否阻塞 我们可以通过redis的idle_conns、total_conns等6个监控指标，可以看到Go
-Redis Client是否阻塞
+* 我们可以通过gorm的wait_count、wait_duration等9个监控指标，可以看到Go MySQL Client是否阻塞 
+* 我们可以通过redis的idle_conns、total_conns等6个监控指标，可以看到Go Redis Client是否阻塞
 
 在高并发条件下，监控这些指标，可以很方便帮助我们排查我们的连接数设置不合理。如果指标存在异常，可以优化连接池配置。
 
