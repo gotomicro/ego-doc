@@ -223,4 +223,9 @@ func helloWorld(ctx context.Context) error {
 
 ```
 
+## 8 Redis监控
+![img.png](../../images/eredis/ego_metric_handle.png)
+![img.png](../../images/eredis/ego_metric_stats.png)
+![img.png](../../images/eredis/ego_current_metric.png)
+
 <Vssue title="Client-redis" />
