@@ -17,13 +17,12 @@
 ## 新版本特效
 
 ### 1 EGO组件支持otel
+gRPC Client、HTTP Client、gRPC Server、HTTP Server、MySQL、Redis、Kafka组件已按照官方标准支持otel
 
-gRPC、HTTP、MySQL、Redis、Kafka组件已按照官方标准支持otel
-
-### 2 EGO组件增加DEBUG模式能力
+### 2 EGO组件增强DEBUG模式能力
 debug模式的六元组能力：代码行号、配置名、目标地址、耗时、请求数据、响应数据
 
-gRPC、HTTP、MySQL、Redis、Kafka、Mongo组件在EGO_DEBUG模式下，支持直接打印业务代码运行的真正路径，在IDE模式下，可以直接点击该链接跳转到对应的代码地方
+gRPC、HTTP、MySQL、Redis、Kafka、Mongo 客户端组件在EGO_DEBUG模式下，支持直接打印业务代码运行的真正路径，在IDE模式下，可以直接点击该链接跳转到对应的代码地方
 
 gRPC的debug模式
 ![img.png](../images/awesome/egov1.0.3_grpc_debug.png)
