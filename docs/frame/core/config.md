@@ -1,11 +1,11 @@
 # 配置
 ## Example
 * 动态配置
-    * [获取单个配置信息](https://github.com/gotomicro/ego/tree/master/examples/config/onelineByFileWatch) 
-    * [获取结构体信息](https://github.com/gotomicro/ego/tree/master/examples/config/structByFileWatch)
+    * [获取单个配置信息](https://github.com/gotomicro/ego/tree/master/examples/config/oneline-by-file-watch) 
+    * [获取结构体信息](https://github.com/gotomicro/ego/tree/master/examples/config/struct-by-file-watch)
 * 静态配置
-    * [获取单个配置信息](https://github.com/gotomicro/ego/tree/master/examples/config/onelineByFile)
-    * [获取结构体信息](https://github.com/gotomicro/ego/tree/master/examples/config/structByFile)
+    * [获取单个配置信息](https://github.com/gotomicro/ego/tree/master/examples/config/oneline-by-file)
+    * [获取结构体信息](https://github.com/gotomicro/ego/tree/master/examples/config/struct-by-file)
     
 ## 系统内置
 * 文本配置
