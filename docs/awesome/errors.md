@@ -35,16 +35,16 @@ func main () {
 ## Error需要wrap
 GO1.13支持了error wrap。我们可以在错误以下方法，将原始错误进行包装。fmt.Errorf里是%w
 ```
-err = fmt.Errorf("wrap error %w",err)
+err = fmt.Errorf("wrap error %w", err)
 ```
 这里需要提醒一点，go官方的error wrap没有堆栈信息，还是比较坑爹
 
 ## Error需要IS
 以往我们对错误判断都是=，但是如果使用了wrap，在用=是无法相等的：
 ```
-selectErr := fmt.Errorf("select info err: %w",gorm.IsNotRecord)
-fmt.Println(selectErr,gorm.IsNotRecord) // false
-fmt.Println(errors.Is(selectErr,gorm.IsNotRecord)) // true
+selectErr := fmt.Errorf("select info err: %w", gorm.IsNotRecord)
+fmt.Println(selectErr == gorm.IsNotRecord) // false
+fmt.Println(errors.Is(selectErr, gorm.IsNotRecord)) // true
 ```
 
 ## Error需要收敛
