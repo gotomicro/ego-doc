@@ -1,13 +1,13 @@
 # 短时任务Job
-ego版本：ego@v0.8.5
+ego版本：ego@v1.1.16
 
-## 背景
+## 1 背景
 通常我们有许多程序是短时任务，执行一下就结束。这种场景通常有以下三种方式：
 * 执行某个一次性任务，例如：执行程序的安装，或者mock数据
 * 将生命周期托管给例如k8s job或者xxljob，由他们控制job的执行时间，执行二进制
 * 通过定时任务来调用某个job http接口
 
-## 最简单的Job
+## 2 最简单的Job
 ### Example
 [项目地址](https://github.com/gotomicro/ego/tree/master/examples/task/job)
 
@@ -47,7 +47,7 @@ func job2(ctx ejob.Context) error {
 }
 ``` 
 
-## HTTP的Job
+## 3 HTTP的Job
 ### Example
 [项目地址](https://github.com/gotomicro/ego/tree/master/examples/task/httpjob)
 
@@ -133,6 +133,25 @@ func job(ctx ejob.Context) error {
 }
 
 ```
+
+## 4 Job使用Cobra
+```go
+func init() {
+	CmdRun.InheritedFlags()
+	// 粘贴以下内容
+	CmdRun.PersistentFlags().StringVar(&jobName, "job", "", "job")
+	rootcmd.RootCommand.AddCommand(CmdRun)
+}
+
+func CmdFunc(cmd *cobra.Command, args []string) {
+	// 使用WithArguments
+	// 因为Cobra Command会有一个二级参数，所以需要去掉一个参数，使用os.Args[2:]
+    err := ego.New(ego.WithArguments(os.Args[2:])).Job(
+        ejob.Job("doSomething", job.DoSomething),
+    )
+}
+```
+
 
 
 
