@@ -19,4 +19,4 @@ jobs:
       - name: Config ossutil
         run: cd docs && ./obsutil_linux_amd64_5.5.9/obsutil config -i ${{ secrets.OBS_ACCESS_KEY_ID }} -k ${{ secrets.OBS_ACCESS_KEY_SECRET }} -e https://obs.cn-north-4.myhuaweicloud.com
       - name: Upload docs by obsutil
-        run: cd docs && ./obsutil_linux_amd64_5.5.9/obsutil cp ./docs/.vuepress/dist obs://open-read/ego-org/dist -f -r -flat
+        run: cd docs && ./obsutil_linux_amd64_5.5.9/obsutil cp .vuepress/dist obs://open-read/ego-org/dist -f -r -flat
