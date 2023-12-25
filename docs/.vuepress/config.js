@@ -28,7 +28,7 @@ var _hmt = _hmt || [];
         if(NODE_ENV === 'production'){
             return {
                 output: {
-                    publicPath: 'https://cdn.gocn.vip/ego/'
+                    publicPath: 'https://ego-org.com/ego-org/'
                 },
                 resolve: {
                     //配置路径别名
