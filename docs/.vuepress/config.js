@@ -62,6 +62,10 @@ var _hmt = _hmt || [];
                 link: "/frame/",
             },
             {
+                text: "最佳实践",
+                link: "/practice/",
+            },
+            {
                 text: "微服务",
                 link: "/micro/",
             },
@@ -69,10 +73,10 @@ var _hmt = _hmt || [];
                 text: "手册",
                 link: "/handbook/",
             },
-            {
-                text: "Awesome",
-                link: "/awesome/",
-            },
+            // {
+            //     text: "Awesome",
+            //     link: "/awesome/",
+            // },
             {
                 text: "EGO",
                 link: "https://github.com/gotomicro/ego",
@@ -168,6 +172,9 @@ var _hmt = _hmt || [];
                     ],
                 },
             ], //这样自动生成对应文章
+            "/practice/": [
+                "debug",
+            ],
             "/micro/": [
                 "大纲",
                 {
@@ -234,12 +241,12 @@ var _hmt = _hmt || [];
                     ],
                 },
             ],
-            "/awesome/": [
-                "errors",
-                "gracefulstop",
-                "map锁double check",
-                "egov1.0.3"
-            ]
+            // "/awesome/": [
+            //     "errors",
+            //     "gracefulstop",
+            //     "map锁double check",
+            //     "egov1.0.3"
+            // ]
         },
         sidebarDepth: 2,
         lastUpdated: "上次更新",
