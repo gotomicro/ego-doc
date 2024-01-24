@@ -12,6 +12,7 @@ type Config struct {
 	EnableTraceInterceptor  bool          // 是否开启链路追踪，默认开启
 	EnableLocalMainIP       bool          // 自动获取ip地址
 	SlowLogThreshold        time.Duration // 服务慢日志，默认500ms
+	AccessInterceptorReqResFilter string  // 打印详细Requst/Response的过滤器
 }
 ```
 
@@ -20,6 +21,17 @@ type Config struct {
 [server.http]
   host = "127.0.0.1"
   port = 9001
+	# 开启请求日志打印
+	accessInterceptor = true
+	# 启用request详细打印，会打印request基础字段以及header字段
+	accessInterceptorReq = true
+	# 启用response详细打印，会打印response基础字段以及header字段
+	accessInterceptorRes = true
+	# 对任意非【GET /hello*】的请求，才打印详细Request和Response
+	# 使用 [cel-go](https://github.com/google/cel-go)，支持的 attribute 包括：
+	#   request.method、request.headers、request.path、request.host、request.scheme、request.query、request.time
+	#   response.code、response.headers、response.time
+	accessInterceptorReqResFilter = '!(request.path.startsWith("/hello") && request.method == "GET")'
 ```
 
 ## 3.1 用户代码
