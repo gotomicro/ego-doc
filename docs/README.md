@@ -12,7 +12,10 @@ features:
   details: 微服务组件的可观测、可治理
 - title: 工程哲学
   details: 配置驱动组件，易于使用
-
-
-footer: MIT Licensed | Copyright © 2020-present EGO | 鄂ICP备14013665号-20
 ---
+
+
+::: slot footer
+MIT Licensed | Copyright © 2020-present EGO <br/>
+[鄂ICP备14013665号-20](https://beian.miit.gov.cn/)
+:::
