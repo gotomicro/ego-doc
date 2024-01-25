@@ -84,7 +84,7 @@ egrpc.CtxStoreSet(ctx, "X-Ego-Code", proto.ERR_USER_NOT_FOUND)
 我们遇到error错误，会习惯性的看到一个error就立刻记录一个错误日志，这种方式并不是最有效。假设一个场景。一个controller调用一个mysql出错。mysql模块记录了这个error日志，controller也记录了这个error日志，这样我们就会有两条日志，杂音太多。
 因此我们需要`Wrap`整个链路。这样我们就可以在最顶层记录一条日志。
 
-然后我们可以在`HTTP`的`gin`服务里使用`ctx.SetErr(err)方法`，`EGO`会自动将该错误记录到框架日志的`err`字段里。
+然后我们可以在`HTTP`的`gin`服务里使用`ctx.Error(err)方法`，`EGO`会自动将该错误记录到框架日志的`err`字段里。
 在`gRPC`的服务里只要你响应的错误里不为`nil`，`EGO`也会自动将该错误记录到框架日志的`err`字段里。
 
 #### 2.3 错误码的唯一性
