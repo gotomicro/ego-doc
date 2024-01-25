@@ -9,7 +9,7 @@
 
 ## 2 说明
 * [example地址](https://github.com/ego-component/egorm/tree/master/examples)
-* [文档地址](https://ego.gocn.vip/frame/client/gorm.html#_1-%E7%AE%80%E4%BB%8B)
+* [文档地址](https://ego-org.com/frame/client/gorm.html#_1-%E7%AE%80%E4%BB%8B)
 * ego版本：``ego@v1.0.0``
 * egorm版本: ``egorm@1.0.0``
 
@@ -141,7 +141,7 @@ enableDetailSQL=true       # 记录sql时,是否打印包含参数的完整sql�
 
 ### 6.5 开启自定义日志字段的数据
 在使用了ego的自定义字段功能`export EGO_LOG_EXTRA_KEYS=X-Ego-Uid`，将对应的数据塞入到context中，那么gorm的access日志就可以记录对应字段信息。
-参考 [详细文档](https://ego.gocn.vip/micro/chapter2/trace.html#_6-ego-access-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%93%BE%E8%B7%AF) ：
+参考 [详细文档](https://ego-org.com/micro/chapter2/trace.html#_6-ego-access-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%93%BE%E8%B7%AF) ：
 ```go
 func testDB() error {
 	var user User

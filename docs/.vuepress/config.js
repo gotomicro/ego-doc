@@ -173,7 +173,15 @@ var _hmt = _hmt || [];
                 },
             ], //这样自动生成对应文章
             "/practice/": [
-                "debug",
+                {
+                    title: "第一章 调试和错误处理",
+                    collapsable: false, // 可选的, 默认值是 true,
+                    children: [
+                        "chapter1/debug",
+                        "chapter1/egotrace",
+                        "chapter1/error",
+                    ],
+                },
             ],
             "/micro/": [
                 "大纲",

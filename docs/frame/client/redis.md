@@ -173,7 +173,7 @@ enableAccessInterceptorRes=true    # 是否开启记录响应参数
 
 ### 6.3 开启自定义日志字段的数据
 在使用了ego的自定义字段功能`export EGO_LOG_EXTRA_KEYS=X-Ego-Uid`，将对应的数据塞入到context中，那么redis的access日志就可以记录对应字段信息。
-参考 [详细文档](https://ego.gocn.vip/micro/chapter2/trace.html#_6-ego-access-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%93%BE%E8%B7%AF) ：
+参考 [详细文档](https://ego-org.com/micro/chapter2/trace.html#_6-ego-access-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%93%BE%E8%B7%AF) ：
 ```go
 func testRedis() error {
     ctx := context.Background()

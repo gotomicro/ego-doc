@@ -1,4 +1,4 @@
-# 快速调试和定位错误
+## 快速调试和定位错误
 
 理想的情况下，我们都希望微服务之间的调用，能够得到正确的响应，这样我们就可以赶紧开发完代码，联通OK，早点下班。
 
@@ -124,7 +124,7 @@ resp, err := client.SayHello(ctx, &helloworld.HelloReq{
 ```
 
 可以通过下图看到调试信息。相比我们上一讲的`hello world`响应，这里展示各种报错信息。
-![img_3.png](../images/practice/debug_1.png)
+![img_3.png](../../images/practice/debug_1.png)
 
 
 红色的高亮报错非常直观，我们可以看到RPC报了系统错误，并返回了Internal错误码，而且因为调试信息中有代码的全路径，我们可以在`Goland IDE`里直接点击这个代码行号，进入到出错的代码中，直接去解决问题，节约大量修复问题的时间。
@@ -197,7 +197,7 @@ func debugEncodeLevel(lv zapcore.Level, enc zapcore.PrimitiveArrayEncoder) {
 代码行号使用全路径的`zapcore.FullCallerEncoder`，这样编辑器可以直接点击到对应代码执行位置。由于`grpc`包中调用链套了5层，我们需要设置`NewDebugLogger().Build(zap.AddCallerSkip(5))`，这样可以正确找到`gRPC`包中执行的地方。
 
 最后我们再执行客户端的调用，可以看到这样的调用流程信息。
-![img_4.png](../images/practice/debug_2.png)
+![img_4.png](../../images/practice/debug_2.png)
 
 在图中，可以看到了整个`gRPC`的调用情况，如果出现名字服务问题或者负载均衡问题，我们就可以通过这些日志排查出问题。
 
@@ -283,11 +283,11 @@ func LoggerPanic(msg string, fields ...zap.Field) {
 ```
 把对应的核心错误的必要信息高亮，通过panic终止程序，在最后一行显示错误。
 完成了我们验证一下。假设在客户端配置一个不存在的`grpc`服务端地址`127.0.0.1:9100`，可以看到启动客户端会报详细的错误和堆栈信息。
-![img_5.png](../images/practice/debug_3.png)
+![img_5.png](../../images/practice/debug_3.png)
 
 
 作为对比，我们使用`notpanic example`代码，同样设置一个不存在的`gRPC`地址，可以发现在日志中虽然有记录错误，但它在其他日志上面，如果业务复杂，日志非常多，刷屏后，很难发现这种核心报错信息。
-![img_6.png](../images/practice/debug_4.png)
+![img_6.png](../../images/practice/debug_4.png)
 
 
 ## 总结

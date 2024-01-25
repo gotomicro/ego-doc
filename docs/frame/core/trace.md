@@ -146,7 +146,7 @@ func main() {
 ```
 
 ### 最终达到效果
-[链路数据流向原理链接](https://ego.gocn.vip/micro/chapter2/trace.html)
+[链路数据流向原理链接](https://ego-org.com/micro/chapter2/trace.html)
 
 例如`MySQL`的`access`日志中记录了`uid`和`trace id`信息。
 ![img.png](../../images/egoaccesstrace3.png)

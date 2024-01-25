@@ -3,7 +3,7 @@
 [![Release](https://img.shields.io/github/v/release/ego-component/ek8s.svg?style=flat-square)](https://github.com/ego-component/ek8s)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Example](https://img.shields.io/badge/Examples-2ca5e0?style=flat&logo=appveyor)](https://github.com/ego-component/ek8s/tree/master/examples)
-[![Doc](https://img.shields.io/badge/Docs-1?style=flat&logo=appveyor)](https://ego.gocn.vip/frame/client/gorm.html#_1-%E7%AE%80%E4%BB%8B)
+[![Doc](https://img.shields.io/badge/Docs-1?style=flat&logo=appveyor)](https://ego-org.com/frame/client/gorm.html#_1-%E7%AE%80%E4%BB%8B)
 
 ## 1 简洁
 - 规范了标准配置格式，提供了统一的 Load().Build() 方法。
