@@ -182,6 +182,13 @@ var _hmt = _hmt || [];
                         "chapter1/error",
                     ],
                 },
+                {
+                    title: "第二章 稳定性",
+                    collapsable: false, // 可选的, 默认值是 true,
+                    children: [
+                        "sla/overview",
+                    ],
+                },
             ],
             "/micro/": [
                 "大纲",

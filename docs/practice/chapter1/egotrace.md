@@ -1,4 +1,4 @@
-## 6 Ego Access 自定义链路
+## Ego Access 自定义链路
 
 日志、链路、监控可以说是微服务治理的三驾马车，如下所示。
 ![img_1.png](../../images/egoaccesstrace1.png)
