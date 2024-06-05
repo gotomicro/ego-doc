@@ -187,6 +187,7 @@ var _hmt = _hmt || [];
                     collapsable: false, // 可选的, 默认值是 true,
                     children: [
                         "sla/overview",
+                        "sla/monitor",
                     ],
                 },
             ],
