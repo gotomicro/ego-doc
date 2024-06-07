@@ -188,6 +188,7 @@ var _hmt = _hmt || [];
                     children: [
                         "sla/overview",
                         "sla/monitor",
+                        "sla/dashboard",
                     ],
                 },
             ],
