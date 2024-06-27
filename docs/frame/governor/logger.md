@@ -1,4 +1,7 @@
-# EGO生态里的组件统一了日志，监控指标。
+# EGO生态日志稳定性排查手段
+EGO将日志分为两种类型，一种是系统日志，一种是业务日志。系统日志指的是`ego`框架或者`ego-component`组件。我们可以通过系统日志，就可以定位绝大部分问题。
+
+使用以下版本，既可以使用`ego`的稳定性排查手段
 * EGO版本: v1.2.2
 * Egorm版本: v1.1.3
 * Eredis版本: v1.1.0
@@ -6,9 +9,7 @@
 * Emongo版本: v1.1.1
 
 ## 日志
-EGO将日志分为两种类型，一种是系统日志，一种是业务日志。系统日志指的是`ego`框架或者`ego-component`组件。我们可以通过系统日志，就可以定位绝大部分问题。
-
-我们可以根据以下字段，在日志系统里建立字段索引
+EGO生态组件统一了日志字段，我们可以根据以下字段，在日志系统里建立字段索引
 | 字段名      | 用途        | 类型     | 
 |----------|-----------|--------|
 | ts       | 时间        |number|
@@ -24,7 +25,7 @@ EGO将日志分为两种类型，一种是系统日志，一种是业务日志�
 | error    | 错误信息      |string|
 | addr     | 连接地址      |string|
 | event    | 事件        |string|
-|key| key       |string|
+|key       | key       |string|
 | ip       | ip        |string|
 | name     | 名称        |string|
 | peerIp   | 对端IP      | string|
@@ -32,7 +33,7 @@ EGO将日志分为两种类型，一种是系统日志，一种是业务日志�
 | type     | 类型        |string|
 
 
-#### 1.1 第一步 Panic 日志观测
+## 第一步 Panic 日志观测
 我们是不允许有`panic`日志，所以要对`panic`日志做好报警。
 ```bash
 # 阿里云、腾讯云日志
@@ -41,7 +42,7 @@ lv:"panic"
 `lv`='panic'
 ```
 
-#### 1.2 第二步 Recover 日志观测
+## 第二步 Recover 日志观测
 `EGO`在`HTTP`和`gRPC`服务有中间件，会对`panic`请求进行`recover`。
 但由于`HTTP`服务如果暴露在公网，会出现`broken pipe`和`connection reset by peer`。所以这种情况下记录的`warn`级别。非这种情况记录的`error`级别。
 因此`lv:"error" AND type:"recover"`这种日志是不允许存在的，需要做报警。
@@ -52,7 +53,7 @@ lv:"error" AND type:"recover"
 `lv`='error' AND `type`='recover'
 ```
 
-#### 1.3 第三步统一错误码观测
+## 第三步 5xx 错误码观测
 我们会使用`ucode`这个字段，观测整个系统的错误码情况。
 `ucode`是将`gRPC server`和`gRPC client`的`code`统一成和`HTTP code`一致。
 我们只需要使用以下指令就能看到`HTTP Server`，`gRPC Server`（默认开启这些日志），和`HTTP Client`，`gRPC Client`（需要手动开启这些日志）
@@ -68,7 +69,7 @@ ucode > 499
 * 查看对应的`error`里面是否有错误信息提示
 * 找到对应`tid`，将整个`tid`的日志查找出来，定位问题
 
-#### 1.4 第四步慢日志观测
+## 第四步 SlowLog 观测
 慢日志不代表系统有问题，但能说明系统的一些风险，也有可能有些慢日志是误报需要调整配置。
 我们可以通过以下指令看到慢日志
 ```bash
@@ -99,7 +100,14 @@ event:"slow" and comp:"server.egin"
 * 指令在`MySQL`或者`Redis`运行不慢，但在客户端堵住了（可以通过metric监控指标确认），那么可能是连接池或者pod数不合理，需要调整连接池配置，或者增加pod数
 * 指令在`MySQL`或者`Redis`运行不慢，客户端也没堵住，可能是`pod`的`CPU`不够。确认是高负载，还是`pod`的`CPU`给少了
 
+## 第五步 数据下钻
+* [Server HTTP日志](./logger_server_egin.md)
+* [Server gRPC日志](./logger_server_egrpc.md)
 
+## 说明
+以上是最基本的观测手段，得出一些基本情况。如果想将稳定性做好，后续还要结合监控指标，以及日志数据下钻分析各种情况。
+我们最终目的是将`ego`的各种可能存在的日志，监控问题，都能穷举出来，通过系统自动化每日巡检。并将每种问题对应的可能原因罗列出来，给出对应的`SOP`方案。
 
+后续在逐渐补充。
 
 
