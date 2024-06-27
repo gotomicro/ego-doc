@@ -160,6 +160,9 @@ var _hmt = _hmt || [];
                     title: "治理模块",
                     collapsable: false, // 可选的, 默认值是 true,
                     children: [
+                        "governor/logger",
+                        "governor/logger_server_egin",
+                        "governor/logger_server_egrpc",
                         "governor/metric",
                     ],
                 },
